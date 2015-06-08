@@ -1,0 +1,124 @@
+@charset "utf-8";
+/* CSS Document */
+ 
+/*---------- 페이지링크 ----------*/
+
+
+.progress_page1 {
+	text-align:center;
+	line-height:12px;
+	margin:0;
+	overflow:hidden;
+	clear:both;
+	margin:0 auto;
+	padding:5px 0 15px 0;
+	font-size:12px;
+}
+.progress_page1 a {
+	margin-right:1px;
+	padding:2px 5px;
+	font-weight:bold;
+	text-decoration:none;
+	border:1px solid #fff;
+	margin:0; 
+}
+.progress_page1 a:hover {
+	margin-right:1px;
+	padding:2px 5px;
+	font-weight:bold;
+	text-decoration:none;
+	border:1px solid #0088b6;
+	background:#f2f2f6;
+	color:#0088b6;
+	margin:0;
+}
+.progress_page1 strong {
+	color:#fff !important;
+	background:#0088b6;
+	border:1px solid #0088b6;
+	padding:2px 5px;
+}
+.progress_page1 a.pre, .progress_page1 a.next {
+	position:relative;
+	height:20px;
+	font-weight:normal;
+	padding:0;
+	font-size:11px;
+	border:1px solid #eaeaea;
+	background:none !important;
+}
+.progress_page1 a.pre:hover, .progress_page1 a.pre:focus, .progress_page1 a.pre:active, .progress_page1 a.next:hover, .progress_page1 a.next:focus, .progress_page1 a.next:active {
+	background:none;
+	border:1px solid #eaeaea;
+!important
+}
+.progress_page1 a.pre {
+	margin-right:3px;
+	padding:2px 5px;
+}
+.progress_page1 a.next {
+	margin-left:3px;
+	padding:2px 5px;
+}
+.progress_page2 {
+	text-align:center;
+	line-height:12px;
+	margin:0;
+	overflow:hidden;
+	clear:both;
+	margin:0 auto;
+	padding:5px 0 15px 0;
+	font-size:12px;
+}
+.progress_page2 a {
+	margin-right:1px;
+	padding:2px 2px;
+	font-weight:bold;
+	text-decoration:none;
+	border:1px solid #fff;
+	margin:0;
+}
+.progress_page2 a:hover {
+	margin-right:1px;
+	padding:2px 2px;
+	font-weight:bold;
+	text-decoration:none;
+	color:#64689f;
+	margin:0;
+}
+.progress_page2 strong {
+	color:#fff !important;
+	background:#0088b6;
+	border:1px solid #0088b6;
+	padding:2px 3px;
+}
+.progress_page2 a.pre, .progress_page2 a.next {
+	position:relative;
+	top:1px;
+	height:20px;
+	padding:0;
+	background:none !important;
+}
+.progress_page2 a.pre:hover, .progress_page2 a.pre:focus, .progress_page1 a.pre:active, .progress_page2 a.next:hover, .progress_page1 a.next:focus, .progress_page1 a.next:active {
+	background:none;
+	border:1px solid #fff !important
+}
+.progress_page2 a.pre {
+	margin-right:1px;
+	padding:2px 1px;
+}
+.progress_page2 a.next {
+	margin-left:1px;
+	padding:2px 1px;
+}
+.progress_page2 .pre span, .progress_page2 .next span {
+	overflow:hidden;
+	visibility:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+	width:1px;
+	height:1px;
+	font-size:0;
+	line-height:0
+}

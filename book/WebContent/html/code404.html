@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>공간정보 오픈플랫폼</title>
+<link rel="stylesheet" href="/css/op_mb.css" type="text/css">
+<link rel="stylesheet" href="/css/op_join.css" type="text/css">
+<script type="text/javascript">
+//<![CDATA[
+
+
+function fn_go_back(){
+	history.go(-1);
+}
+
+function fn_go_open_platform(){
+	var f = document.searchForm;
+	f.action= '/po_main.do';
+    f.submit();
+}
+//]]>
+</script>
+
+</head>
+<body>
+<div id="wrap">
+	<div id="header">
+		<div id="top">
+			<h1 class="logo"><a href="javascript:fn_go_open_platform();"><img src="/images/common/logo.gif" alt="오픈플랫폼" /></a></h1>
+			<ul class="user">
+				<li><a href="/">INTRO</a></li>
+				<li><a href="/map/">공간정보 서비스</a></li>
+				<li class="no_bg"><a href="/dev/">개발자 센터</a></li>
+			</ul>
+		</div>
+	</div>	
+	<div id="cont">
+		<form name="searchForm" action ="/map/map.do">
+		<div class="errer_wrap">
+			<h2><img src="/images/common/txt_errer03.gif" alt="페이지를 찾을 수 없습니다." /></h2>
+			<p>찾으시려는 페이지의 주소가 올바른지 다시 한번 확인해 주시길 부탁드립니다.<br />
+				서비스 이용에 불편을 드려 죄송합니다.
+			</p>
+			<div class="btn">
+				<a href="javascript:fn_go_back();" class="btn01"><span class="w153">이전 페이지로 가기</span></a>
+				<a href="javascript:fn_go_open_platform();" class="btn01"><span class="w153">오픈플랫폼 홈으로 가기</span></a>
+			</div>
+		</div>
+		</form>
+	</div>
+</div>
+<div id="footer">
+	<div class="footer">
+		<div class="f_logo"><img src="/images/op_mb/f_logo.gif" alt="" /></div>
+		<div class="fl">
+			<ul class="f_link">
+				<li><a href="/po_intbiz_a006.do">이용약관</a></li>
+				<li class="no_bg"><a href="/po_intbiz_a007.do">개인정보취급방침</a></li>
+			</ul>
+			<div class="copy">
+				<address>427 - 712 경기도 과천시 관문로 88 정부과천청사 4동</address>
+				<p>본 홈페이지는 게시된 이메일 주소가 자동 수집되는 것을 거부하며, 이를 위반시 정보통신망법에 의해 처벌됨을 유념하여 주시기 바랍니다.</p>
+				<p class="copyright">Copyright ⓒ 2011 Open Platform All Rights Reserved.</p>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+
+
+

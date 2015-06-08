@@ -1,0 +1,218 @@
+body { margin:0; padding:0; overflow:hidden; min-width:340px; }
+	
+.menubar_btn ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+
+.menubar_btn li {
+	margin:0 0 0 3px;
+	padding:0;
+	float:left;
+	}
+
+a.zoomin {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_zoomin.png) no-repeat;
+	}
+
+a:hover.zoomin {
+	background-position:0 -28px;
+	}
+	
+a.zoomout {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_zoomout.png) no-repeat;
+	}
+
+a:hover.zoomout {
+	background-position:0 -28px;
+	}
+	
+a.move {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_move.png) no-repeat;
+	}
+
+a:hover.move {
+	background-position:0 -28px;
+	}
+	
+a.prev {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_prev.png) no-repeat;
+	}
+
+a:hover.prev {
+	background-position:0 -28px;
+	}
+
+a.next {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_next.png) no-repeat;
+	}
+
+a:hover.next {
+	background-position:0 -28px;
+	}
+
+a.reset {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_reset.png) no-repeat;
+	}
+
+a:hover.reset {
+	background-position:0 -28px;
+	}
+
+a.print {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_print.png) no-repeat;
+	}
+
+a:hover.print {
+	background-position:0 -28px;
+	}
+
+a.distance {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_distance.png) no-repeat;
+	}
+
+a:hover.distance {
+	background-position:0 -28px;
+	}
+
+a.area {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_area.png) no-repeat;
+	}
+
+a:hover.area {
+	background-position:0 -28px;
+	}
+
+a.full {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_full.png) no-repeat;
+	}
+
+a:hover.full {
+	background-position:0 -28px;
+	}
+
+a.layer {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_layer.png) no-repeat;
+	}
+
+a:hover.layer {
+	background-position:0 -28px;
+	}
+
+a.double_layer {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_dlayer.png) no-repeat;
+	}
+
+/*속성보기 */
+a.attribute_icon {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_attribute.png) no-repeat;
+	}
+	
+/*원클릭속성보기 */
+a.oneclick_icon {
+display:block;
+width:25px;
+height:28px;
+background:url(/images/menubar_btn_oneclick.png) no-repeat;
+}
+
+/*반경분석 */
+a.radius_icon {
+display:block;
+width:25px;
+height:28px;
+background:url(/images/menubar_btn_radius.png) no-repeat;
+}
+
+/*공간분석 */
+a.space_icon {
+display:block;
+width:25px;
+height:28px;
+background:url(/images/menubar_btn_space.png) no-repeat;
+}
+
+/*필적검색 */
+a.land_icon {
+display:block;
+width:25px;
+height:28px;
+background:url(/images/menubar_btn_search.png) no-repeat;
+}
+
+a:hover.double_layer {
+	background-position:0 -28px;
+	}
+
+a.vtx {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_vtx.png) no-repeat;
+	}
+
+a:hover.vtx {
+	background-position:0 -28px;
+	}
+
+a.rode {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_rode.png) no-repeat;
+	}
+
+a:hover.rode {
+	background-position:0 -28px;
+	}
+
+a.marker {
+	display:block;
+	width:25px;
+	height:28px;
+	background:url(/images/menubar_btn_marker.png) no-repeat;
+	}
+
+a:hover.marker {
+	background-position:0 -28px;
+	}

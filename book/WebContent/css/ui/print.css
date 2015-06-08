@@ -1,0 +1,100 @@
+BODY { FONT-SIZE: 9pt }
+TABLE { FONT-SIZE: 9pt }
+TD { FONT-SIZE: 9pt }
+UNKNOWN { FONT-SIZE: 9pt; COLOR: black; TEXT-DECORATION: none }
+td.Name1 {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid;HEIGHT: 30px; width:150px;
+}
+td.Name2 {
+	BORDER-LEFT:1px solid; BORDER-TOP:1px solid; BORDER-BOTTOM:1px solid; HEIGHT: 30px;width:150px;
+}
+td.Name3 {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid; HEIGHT: 30px; width:250px;
+}
+td.Name4 {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid; BORDER-RIGHT:1px solid; HEIGHT: 30px; width:250px;
+}
+td.Name4-1 {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid; BORDER-RIGHT:1px solid; HEIGHT: 30px; 
+}
+td.Name5 {
+	BORDER-LEFT:1px solid;  BORDER-BOTTOM:1px solid;HEIGHT: 30px;
+}
+td.Name6 {
+	BORDER:1px solid; HEIGHT: 30px; letter-spacing:8; 
+}
+td.Name7 {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid;HEIGHT: 30px;
+}
+td.Name8 {
+	BORDER-LEFT:1px solid; BORDER-RIGHT:1px solid; BORDER-BOTTOM:1px solid;HEIGHT: 30px;
+}
+td.Name9 {
+	BORDER-LEFT:1px solid;  HEIGHT: 30px;
+}
+td.Name10 {
+	BORDER-LEFT:1px solid; BORDER-TOP:1px solid; BORDER-RIGHT:1px solid; BORDER-BOTTOM:1px solid; HEIGHT: 30px; width:150px;
+}
+td.Name11 {
+	BORDER-LEFT:1px solid; BORDER-TOP:1px solid; BORDER-RIGHT:1px solid; BORDER-BOTTOM:1px solid; HEIGHT: 30px;
+}
+td.Name12 {
+	BORDER-BOTTOM:1px solid;  HEIGHT: 30px;
+}
+td.Title1 {
+	FONT-SIZE:16pt; letter-spacing:20; 
+}
+td.Value1 {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid; HEIGHT: 30px;
+}
+td.Value2 {
+	BORDER-LEFT:1px solid; BORDER-TOP:1px solid; BORDER-BOTTOM:1px solid; HEIGHT: 30px; width:250px;
+}
+td.NameN {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid;HEIGHT: 30px; 
+}
+td.NName1 {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid;HEIGHT: 30px;;
+}
+td.NName2 {
+	BORDER-LEFT:1px solid; BORDER-TOP:1px solid; BORDER-BOTTOM:1px solid; HEIGHT: 30px;;
+}
+td.NName3 {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid; HEIGHT: 30px;;
+}
+td.NName4 {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid; BORDER-RIGHT:1px solid; HEIGHT: 30px;;
+}
+td.NName4-1 {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid; BORDER-RIGHT:1px solid; HEIGHT: 30px; 
+}
+td.NName5 {
+	BORDER-LEFT:1px solid;  BORDER-BOTTOM:1px solid;HEIGHT: 30px;
+}
+td.NName6 {
+	BORDER:1px solid; HEIGHT: 30px; letter-spacing:8; 
+}
+td.NName7 {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid;HEIGHT: 30px;
+}
+td.NName8 {
+	BORDER-LEFT:1px solid; BORDER-RIGHT:1px solid; BORDER-BOTTOM:1px solid;HEIGHT: 30px;
+}
+td.NName9 {
+	BORDER-LEFT:1px solid;  HEIGHT: 30px;
+}
+td.NName10 {
+	BORDER-LEFT:1px solid; BORDER-TOP:1px solid; BORDER-RIGHT:1px solid; BORDER-BOTTOM:1px solid; HEIGHT: 30px;;
+}
+td.NName11 {
+	BORDER-LEFT:1px solid; BORDER-TOP:1px solid; BORDER-RIGHT:1px solid; BORDER-BOTTOM:1px solid; HEIGHT: 30px;
+}
+td.NName12 {
+	BORDER-BOTTOM:1px solid;  HEIGHT: 30px;
+}
+td.NName13 {
+	BORDER-LEFT:1px solid; BORDER-BOTTOM:1px solid;  HEIGHT: 30px;
+}
+td.NName14 {
+	BORDER-LEFT:1px solid; BORDER-TOP:1px solid;  BORDER-BOTTOM:1px solid; HEIGHT: 30px;
+}

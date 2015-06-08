@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	
+	<typeAlias alias="entityMap" type="egovframework.got.com.map.EntityMap" />
+	<typeHandler callback="org.springframework.orm.ibatis.support.ClobStringTypeHandler" javaType="string" jdbcType="CLOB"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/EgovSample_SQL_oracle.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/EgovCode_SQL_oracle.xml"/>
+		
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/UisCfSearBldg.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/UisCfSearCbnd.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/UisCfSearNeln.xml"/>
+	
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/Notice_SQL_oracle.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/QnA_SQL_oracle.xml"/>
+	 
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeCultourFood.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeCultourHotel.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeCultourSpecialty.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeCultourTour.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeCultourTrail.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeCultourMineral.xml"/>
+
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeEduElement.xml"/>	
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeEduHigh.xml"/>	
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeEduKinder.xml"/>	
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeEduMiddle.xml"/>	
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeEduUniv.xml"/>	
+	
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeGovGovernment.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeGovHospital.xml"/>
+					
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeTrafRepoBikelane.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeTrafRepoBikerack.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeTrafRepoCarpark.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeTrafRepoCctv.xml"/>
+	
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifePictureView.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/LifeMain.xml"/>
+	
+	
+</sqlMapConfig>

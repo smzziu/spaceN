@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LifeMain">
+	
+	<resultMap id="resultInfo" class="entityMap" >
+		<result column="NO" property="NO"/>
+		<result column="TOT_CNT" property="TOT_CNT"/>
+		<result column="CNT_DAY" property="CNT_DAY"/>
+	</resultMap> 
+	<resultMap id="resultBjdCde" class="entityMap" >
+		<result column="GID" property="GID"/>
+		<result column="FTR_CDE" property="FTR_CDE"/>
+		<result column="HJD_CDE" property="HJD_CDE"/>
+		<result column="HJD_NAM" property="HJD_NAM"/>
+		<result column="SHAPE_AREA" property="SHAPE_AREA"/>
+		<result column="SHAPE_LEN" property="SHAPE_LEN"/>
+	</resultMap>
+	<resultMap id="resultInfo2" class="entityMap" >
+		<result column="META_YEAR" property="META_YEAR"/>
+		<result column="META_NAME" property="META_NAME"/>
+		<result column="META_SCALE" property="META_SCALE"/>
+		<result column="META_RESOLUTION" property="META_RESOLUTION"/>
+		<result column="META_CRITERIA" property="META_CRITERIA"/>
+		<result column="META_SEQ" property="META_SEQ"/>
+	</resultMap> 	
+<select id="main.selGuestCnt" parameterClass="entityMap" resultMap="resultInfo"> 
+			SELECT	NO,TOT_CNT,	CNT_DAY 
+			FROM GUEST_CNT
+	</select>	
+	
+	<update id="main.upGuestCnt">
+		<![CDATA[
+			UPDATE GUEST_CNT SET
+					TOT_CNT=(select TO_NUMBER(TOT_CNT, 999)+1 FROM GUEST_CNT WHERE NO=1),
+					CNT_DAY=sysdate
+ 			WHERE NO=1 
+		]]>
+	</update>	
+	
+	<select id="cf.UisCfSearBldgM" parameterClass="entityMap" resultClass="int">
+			SELECT GID
+			FROM BML_HADM_AS 	
+			WHERE 1=1
+				<isNotEmpty prepend="AND" property="hjdnam">
+				HJD_NAM = #hjdnam#
+				</isNotEmpty>
+	</select>
+	
+	<select id="metadataL" parameterClass="entityMap" resultMap="resultInfo2">
+			SELECT *
+			FROM CMT_META_DAT 	
+			WHERE 1=1
+			<isNotEmpty prepend="AND" property="metaYear">
+			META_YEAR = #metaYear#
+			</isNotEmpty>
+	</select>
+	
+	<select id="metadataR" parameterClass="entityMap" resultMap="resultInfo2">
+			SELECT *
+			FROM CMT_META_DAT 	
+			WHERE 1=1
+			<isNotEmpty prepend="AND" property="META_SEQ">
+			META_SEQ = #META_SEQ#
+			</isNotEmpty>
+	</select>
+
+</sqlMap>

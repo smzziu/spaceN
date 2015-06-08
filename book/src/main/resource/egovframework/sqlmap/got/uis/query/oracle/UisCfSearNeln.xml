@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="UisCfSearNeln">
+
+	<resultMap id="resultInfo" class="entityMap">
+		<result column="GID" property="GID" />
+		<result column="IDN" property="IDN" />
+		<result column="BUL_MAN_NO" property="BUL_MAN_NO" />
+		<result column="RDS_MAN_NO" property="RDS_MAN_NO" />
+		<result column="BULD_MNNM" property="BULD_MNNM" />
+		<result column="BULD_SLNO" property="BULD_SLNO" />
+		<result column="BJD_NAM" property="BJD_NAM" />
+		<result column="RN" property="RN" />
+		<result column="BD_NUM" property="BD_NUM" />
+		<result column="LNBR_MNNM" property="LNBR_MNNM" />
+		<result column="LNBR_SLNO" property="LNBR_SLNO" />
+		<result column="UND_FLO_CO" property="UND_FLO_CO" />
+		<result column="GRO_FLO_CO" property="GRO_FLO_CO" />
+		<result column="RN_CD" property="RN_CD" />
+	</resultMap>
+
+	<resultMap id="selectAddr" class="entityMap">
+		<result column="BJD_CDE" property="BJD_CDE" />
+		<result column="BJD_NAM" property="BJD_NAM" />
+	</resultMap>
+	
+	<resultMap id="selectRoadName" class="entityMap">
+		<result column="CODE" property="CODE" />
+		<result column="NAME" property="NAME" />
+	</resultMap>
+	
+	<resultMap id="" class="entityMap">
+		<result column="CODE" property="CODE" />
+		<result column="NAME" property="NAME" />
+	</resultMap>
+
+	<select id="cf.UisCfSearNelnL" parameterClass="entityMap" resultMap="resultInfo">
+
+		SELECT	*
+		FROM(
+			SELECT ROWNUM RNUM,TMP.* 
+			FROM(
+				SELECT DISTINCT ROWNUM,
+				TO_NUMBER(A.BULD_MNNM||A.BULD_SLNO) AS IDN,
+				A.BUL_MAN_NO,
+				A.RDS_MAN_NO,
+				A.BULD_MNNM,
+				A.BULD_SLNO,
+				B.BJD_NAM,
+				A.RN,
+				A.GID,
+				DECODE(A.BULD_SLNO,0,TO_CHAR(A.BULD_MNNM),
+				TO_CHAR(A.BULD_MNNM)||''-''||TO_CHAR(A.BULD_SLNO))	AS BD_NUM,
+				A.LNBR_MNNM,
+				A.LNBR_SLNO,
+				A.UND_FLO_CO,
+				A.GRO_FLO_CO,
+				A.RN_CD
+		FROM	(
+			SELECT E.*,
+					F.RN,
+					F.ROA_CLS_SE
+			FROM TL_SPBD_BULD E, TL_SPRD_MANAGE F
+			WHERE E.RDS_MAN_NO = F.RDS_MAN_NO) A,
+						O2M44200.CMT_LGAR_MA B,
+						(	SELECT MAX(Z.BD_MGT_SN) AS BD_MGT_SN
+							FROM TL_SPBD_BULD Z, TL_SPRD_MANAGE Y
+							WHERE Z.RDS_MAN_NO IS NOT NULL
+										AND Z.RDS_MAN_NO = Y.RDS_MAN_NO
+				<dynamic>
+					<isNotEmpty prepend="AND" property="rnCd">
+						Y.RN_CD = #rnCd#
+					</isNotEmpty>
+				</dynamic>
+							GROUP BY Z.BULD_MNNM) C
+		WHERE
+				A.BULD_MNNM > 0 AND A.RDS_MAN_NO > 0
+				AND SUBSTR(A.BD_MGT_SN,1,10) = B.BJD_CDE
+				AND A.BD_MGT_SN = C.BD_MGT_SN
+				<dynamic>
+					<isNotEmpty prepend="AND" property="rnCd">
+						A.RN_CD = #rnCd#
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="buldMnnm">
+						A.BULD_MNNM =	#buldMnnm#
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="buldSlno">
+						A.BULD_SLNO =	#buldSlno#
+					</isNotEmpty>
+				</dynamic>
+				ORDER BY IDN
+				) TMP
+			)B
+
+	</select>
+
+	<select id="cf.UisCfSearNelnC" parameterClass="entityMap" resultClass="int">
+		
+		SELECT	count(*)
+		FROM(
+			SELECT ROWNUM RNUM,TMP.* 
+			FROM(
+				SELECT DISTINCT ROWNUM,
+				TO_NUMBER(A.BULD_MNNM||A.BULD_SLNO) AS IDN,
+				A.BUL_MAN_NO,
+				A.RDS_MAN_NO,
+				A.BULD_MNNM,
+				A.BULD_SLNO,
+				B.BJD_NAM,
+				A.RN,
+				DECODE(A.BULD_SLNO,0,TO_CHAR(A.BULD_MNNM),
+				TO_CHAR(A.BULD_MNNM)||''-''||TO_CHAR(A.BULD_SLNO))	AS BD_NUM,
+				A.LNBR_MNNM,
+				A.LNBR_SLNO,
+				A.UND_FLO_CO,
+				A.GRO_FLO_CO,
+				A.RN_CD
+		FROM	(
+			SELECT E.*,
+					F.RN,
+					F.ROA_CLS_SE
+			FROM TL_SPBD_BULD E, TL_SPRD_MANAGE F
+			WHERE E.RDS_MAN_NO = F.RDS_MAN_NO) A,
+						O2M44200.CMT_LGAR_MA B,
+						(	SELECT MAX(Z.BD_MGT_SN) AS BD_MGT_SN
+							FROM TL_SPBD_BULD Z, TL_SPRD_MANAGE Y
+							WHERE Z.RDS_MAN_NO IS NOT NULL
+										AND Z.RDS_MAN_NO = Y.RDS_MAN_NO
+				<dynamic>
+					<isNotEmpty prepend="AND" property="rnCd">
+						Y.RN_CD = #rnCd#
+					</isNotEmpty>
+				</dynamic>
+							GROUP BY Z.BULD_MNNM) C
+		WHERE
+				A.BULD_MNNM > 0 AND A.RDS_MAN_NO > 0
+				AND SUBSTR(A.BD_MGT_SN,1,10) = B.BJD_CDE
+				AND A.BD_MGT_SN = C.BD_MGT_SN
+				<dynamic>
+					<isNotEmpty prepend="AND" property="rnCd">
+						A.RN_CD = #rnCd#
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="buldMnnm">
+						A.BULD_MNNM =	#buldMnnm#
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="buldSlno">
+						A.BULD_SLNO =	#buldSlno#
+					</isNotEmpty>
+				</dynamic>
+				ORDER BY IDN
+				) TMP
+			)B
+		
+	</select>
+	
+	<select id="cf.selectRoadNameList" parameterClass="entityMap" resultMap="selectRoadName">
+		<![CDATA[
+			select 
+                (
+                    select rn_cd from TL_SPRD_MANAGE 
+                    where rn_cd = a.rn_cd group by rn_cd
+                ) CODE,
+                (
+                    select rn from TL_SPRD_MANAGE 
+                    where rn_cd = a.rn_cd group by rn
+                ) NAME 
+                from TL_SPBD_BULD a 
+                where 1=1
+                and sig_cd=#sigCd# 
+                AND emd_cd=#emdCd# 
+                and li_cd=#liCd#
+                group by rn_cd order by NAME
+		]]>
+	</select>
+	
+	<select id="cf.selectAddr" parameterClass="entityMap" resultMap="selectAddr">
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						BJD_CDE,BJD_NAM
+					FROM O2M44200.CMT_LGAR_MA
+					WHERE 1=1
+					<isNotEmpty prepend="AND" property="bjdNam">
+					 BJD_NAM LIKE '%' || #bjdNam# || '%'			
+					</isNotEmpty>
+					ORDER BY BJD_CDE
+				) TMP
+			)B
+			WHERE ROWNUM &lt;= #recordCountPerPage# and RNUM &gt; #firstIndex#	
+	</select>
+	
+	<select id="cf.selectAddrC" parameterClass="entityMap" resultClass="int">
+			SELECT
+				COUNT(*)
+			FROM O2M44200.CMT_LGAR_MA
+			WHERE 1=1
+			<isNotEmpty prepend="AND" property="bjdNam">
+			 BJD_NAM LIKE '%' || #bjdNam# || '%'			
+			</isNotEmpty>			
+	</select>
+	
+	<select id="cf.UisCfSearNelnR" parameterClass="entityMap" resultMap="resultInfo">
+			SELECT	*
+		FROM(
+			SELECT ROWNUM RNUM,TMP.* 
+			FROM(
+				SELECT DISTINCT ROWNUM,
+				TO_NUMBER(A.BULD_MNNM||A.BULD_SLNO) AS IDN,
+				A.BUL_MAN_NO,
+				A.RDS_MAN_NO,
+				A.BULD_MNNM,
+				A.BULD_SLNO,
+				B.BJD_NAM,
+				A.RN,
+				A.GID,
+				DECODE(A.BULD_SLNO,0,TO_CHAR(A.BULD_MNNM),
+				TO_CHAR(A.BULD_MNNM)||''-''||TO_CHAR(A.BULD_SLNO))	AS BD_NUM,
+				A.LNBR_MNNM,
+				A.LNBR_SLNO,
+				A.UND_FLO_CO,
+				A.GRO_FLO_CO,
+				A.RN_CD
+		FROM	(
+			SELECT E.*,
+					F.RN,
+					F.ROA_CLS_SE
+			FROM TL_SPBD_BULD E, TL_SPRD_MANAGE F
+			WHERE E.RDS_MAN_NO = F.RDS_MAN_NO
+				<isNotEmpty prepend="AND" property="bulManNo">
+						E.BUL_MAN_NO = #bulManNo#
+				</isNotEmpty>
+			) A,
+						O2M44200.CMT_LGAR_MA B,
+						(	SELECT MAX(Z.BD_MGT_SN) AS BD_MGT_SN
+							FROM TL_SPBD_BULD Z, TL_SPRD_MANAGE Y
+							WHERE Z.RDS_MAN_NO IS NOT NULL
+										AND Z.RDS_MAN_NO = Y.RDS_MAN_NO
+				<dynamic>
+					<isNotEmpty prepend="AND" property="rnCd">
+						Y.RN_CD = #rnCd#
+					</isNotEmpty>
+				</dynamic>
+							GROUP BY Z.BULD_MNNM) C
+		WHERE
+				A.BULD_MNNM > 0 AND A.RDS_MAN_NO > 0
+				AND SUBSTR(A.BD_MGT_SN,1,10) = B.BJD_CDE
+				AND A.BD_MGT_SN = C.BD_MGT_SN
+				<dynamic>
+					<isNotEmpty prepend="AND" property="rnCd">
+						A.RN_CD = #rnCd#
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="buldMnnm">
+						A.BULD_MNNM =	#buldMnnm#
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="buldSlno">
+						A.BULD_SLNO =	#buldSlno#
+					</isNotEmpty>
+				</dynamic>
+				ORDER BY IDN
+				) TMP
+			)B		
+	</select>
+	
+</sqlMap>

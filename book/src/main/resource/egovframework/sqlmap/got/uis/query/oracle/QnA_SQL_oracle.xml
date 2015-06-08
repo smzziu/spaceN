@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="QnA">
+	
+
+	<resultMap id="resultInfo" class="entityMap" >
+		<result column="IDE" property="ide"/> 
+		<result column="SUBJUCT" property="subject"/>
+		<result column="WRITER" property="writer"/>
+		<result column="CONTENT" property="content" jdbcType="CLOB" javaType="String"/>
+		<result column="CDATE" property="regDate"/>
+		<result column="REPLY" property="reply"/>  
+		<result column="HIT_CNT" property="hitCnt"/>  
+		<result column="REPLY_GRP" property="replyGrp"/>  
+		<result column="REPLY_DEP" property="replyDep"/>
+	</resultMap> 
+
+
+	<select id="QnA.selectQnAList" parameterClass="entityMap" resultMap="resultInfo">
+		<![CDATA[
+			SELECT *
+			FROM(
+			    SELECT ROWNUM RNUM,TMP.* FROM(
+			         SELECT	
+			            IDE,
+			            SUBJUCT,
+			            WRITER,
+			            CONTENT,
+			            CDATE,
+			            REPLY,
+			            HIT_CNT,
+			            REPLY_GRP,
+			            REPLY_DEP
+			        FROM DM_QNA_MA
+			        WHERE 1=1 
+			        ORDER BY REPLY_GRP DESC, REPLY_DEP ASC  
+			    ) TMP
+			) B	
+			WHERE ROWNUM <= #recordCountPerPage# and RNUM > #firstIndex#			
+		]]>
+	</select>
+	
+	<select id="QnA.selectQnA" parameterClass="entityMap" resultMap="resultInfo">
+		<![CDATA[
+			
+	        SELECT
+	            IDE,
+	            SUBJUCT,
+	            WRITER,
+	            CONTENT,
+	            CDATE,
+	            REPLY,
+	            HIT_CNT,
+	            REPLY_GRP,
+	            REPLY_DEP
+	        FROM DM_QNA_MA
+	        WHERE 1=1
+	        AND IDE = #ide#      
+			
+		]]>
+	</select>
+	
+<select id="QnA.selectQnAListTotCnt" parameterClass="entityMap" resultClass="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM DM_QNA_MA
+		]]>
+	</select>
+	
+	<insert id="QnA.insertQnA">
+		<![CDATA[
+			INSERT INTO DM_QNA_MA (
+	  			 IDE
+			 	,SUBJUCT
+			 	,WRITER
+			  	,CONTENT
+				,CDATE
+				,REPLY	
+				,REPLY_GRP
+				,REPLY_DEP
+				) VALUES (
+				  #ide#
+				 ,#subject# 
+				 ,#writer# 
+				 ,#content#   
+				 ,sysdate
+				 ,#reply#
+				 ,#replyGrp#
+				 ,#replyDep#
+				) 
+		]]>
+	</insert>
+	
+	<insert id="QnA.updateQnA">
+		<![CDATA[
+			UPDATE DM_QNA_MA 
+			SET SUBJUCT=#subject#
+				,CONTENT=#content#
+				,CDATE=sysdate
+			where 1=1
+			and IDE=#ide#
+		]]>
+	</insert>
+	
+	<insert id="QnA.deleteQnA">
+		
+			DELETE FROM DM_QNA_MA
+			WHERE 1=1
+			<isNotEmpty prepend="AND" property="replyGrp">
+			REPLY_GRP=#replyGrp#		
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="ide">
+			IDE=#ide#		
+			</isNotEmpty>
+	</insert>
+	
+	<update id="QnA.updateUsrHitCn">
+
+		UPDATE DM_QNA_MA SET 
+			HIT_CNT = HIT_CNT + 1
+		WHERE IDE=#ide#
+
+	</update>
+	
+	<!-- 부모글의 group값 select -->
+	<select id="QnA.selectGroup" parameterClass="entityMap" resultClass="int">
+		SELECT REPLY_GRP
+		FROM DM_QNA_MA
+		WHERE IDE=#ide#
+	</select>
+	
+	<select id="QnA.selectMaxDepth" parameterClass="entityMap" resultClass="int">
+		SELECT MAX(REPLY_DEP)
+		FROM DM_QNA_MA
+		WHERE REPLY_GRP = #replyGrp#
+	</select>
+	
+	<select id="QnA.selectMaxGroup" parameterClass="entityMap" resultClass="int">
+		SELECT MAX(REPLY_GRP) 
+		FROM DM_QNA_MA
+	</select>
+	
+
+	
+</sqlMap>

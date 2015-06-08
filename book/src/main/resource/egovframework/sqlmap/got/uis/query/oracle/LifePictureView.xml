@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LifePictureView">
+	
+	<resultMap id="imgFileInfo" class="entityMap" >
+		<result column="FLE_IDN" property="FLE_IDN"/>
+		<result column="FTR_CDE" property="FTR_CDE"/>
+		<result column="FTR_IDN" property="FTR_IDN"/>
+		<result column="IMG_NAM" property="IMG_NAM"/>
+		<result column="IMG_EXP" property="IMG_EXP"/>
+		<result column="FLE_NAM" property="FLE_NAM"/>
+	</resultMap> 
+	
+	<select id="LifePictureView" parameterClass="entityMap" resultMap="imgFileInfo">
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						FLE_IDN,
+						FTR_CDE,
+						FTR_IDN,
+						IMG_NAM,
+						IMG_EXP,
+						FLE_NAM
+					FROM LFT_FILE_ET
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="ftrIdn">
+						FTR_IDN = #ftrIdn#
+						</isNotEmpty>
+						<isNotEmpty prepend="AND" property="ftrCde">
+						FTR_Cde = #ftrCde#
+						</isNotEmpty>
+						ORDER BY FLE_IDN DESC
+				) TMP
+			)B
+	</select>
+
+</sqlMap>

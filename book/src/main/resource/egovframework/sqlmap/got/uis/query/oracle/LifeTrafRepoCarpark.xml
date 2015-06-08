@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LifeTrafRepoCarpark">
+	
+	<resultMap id="resultInfo" class="entityMap" >
+		<result column="GID" property="GID"/>
+		<result column="FTR_CDE" property="FTR_CDE"/>
+		<result column="FTR_IDN" property="FTR_IDN"/>
+		<result column="HJD_CDE" property="HJD_CDE"/>
+		<result column="BJD_CDE" property="BJD_CDE"/>
+		<result column="JBN_NAM" property="JBN_NAM"/>
+		<result column="SHT_NUM" property="SHT_NUM"/>
+		<result column="MNG_CDE" property="MNG_CDE"/>
+		<result column="SEC_IDN" property="SEC_IDN"/>
+		<result column="CNT_NUM" property="CNT_NUM"/>
+		<result column="OPN_YMD" property="OPN_YMD"/>
+		<result column="MNG_ADR" property="MNG_ADR"/>
+		<result column="PRK_TEL" property="PRK_TEL"/>
+		<result column="IDT_NUM" property="IDT_NUM"/>
+		<result column="PRK_NAM" property="PRK_NAM"/>
+		<result column="PST_CDE" property="PST_CDE"/>
+		<result column="CHR_CDE" property="CHR_CDE"/>
+		<result column="FEE_EXP" property="FEE_EXP"/>
+		<result column="PRK_CNT" property="PRK_CNT"/>
+		<result column="HKP_CNT" property="HKP_CNT"/>
+		<result column="PRK_ARA" property="PRK_ARA"/>
+		<result column="OPN_TIM" property="OPN_TIM"/>
+		<result column="CLS_TIM" property="CLS_TIM"/>
+		<result column="PKL_CDE" property="PKL_CDE"/>
+		<result column="ISU_CDE" property="ISU_CDE"/>
+		<result column="SYS_CHK" property="SYS_CHK"/>
+		<result column="SHAPE_AREA" property="SHAPE_AREA"/>
+		<result column="SHAPE_LEN" property="SHAPE_LEN"/>
+
+	</resultMap> 
+		
+	<select id="cultour.LifeTrafRepoCarparkL" parameterClass="entityMap" resultMap="resultInfo">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						GID,
+						FTR_CDE,
+						FTR_IDN,
+						HJD_CDE,
+						BJD_CDE,
+						JBN_NAM,
+						SHT_NUM,
+						MNG_CDE,
+						SEC_IDN,
+						CNT_NUM,
+						OPN_YMD,
+						MNG_ADR,
+						PRK_TEL,
+						IDT_NUM,
+						PRK_NAM,
+						PST_CDE,
+						CHR_CDE,
+						FEE_EXP,
+						PRK_CNT,
+						HKP_CNT,
+						PRK_ARA,
+						OPN_TIM,
+						CLS_TIM,
+						PKL_CDE,
+						ISU_CDE,
+						SYS_CHK,
+						SHAPE_AREA,
+						SHAPE_LEN,
+						THE_GEOM
+					FROM O2M44200.RDL_PAKP_AS
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="bjdCde">
+						BJD_CDE = #bjdCde#
+						</isNotEmpty>
+						<isNotEmpty prepend="AND" property="prkNam">
+						PRK_NAM Like '%'||#prkNam#||'%'
+						</isNotEmpty>
+						ORDER BY FTR_IDN DESC
+				) TMP
+			)B
+			<!-- <WHERE ROWNUM &lt;= #recordCountPerPage# and RNUM &gt; #firstIndex# -->		
+	</select>	
+	
+	<select id="cultour.LifeTrafRepoCarparkC" parameterClass="entityMap" resultClass="int">
+			SELECT
+				COUNT(*)
+			FROM O2M44200.RDL_PAKP_AS
+			WHERE 1=1
+				<isNotEmpty prepend="AND" property="bjdCde">
+				BJD_CDE = #bjdCde#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="prkNam">
+				PRK_NAM Like '%'||#prkNam#||'%'
+				</isNotEmpty>
+	</select>	
+	
+	<select id="cultour.LifeTrafRepoCarparkR" parameterClass="entityMap" resultMap="resultInfo">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						GID,
+						FTR_CDE,
+						FTR_IDN,
+						HJD_CDE,
+						BJD_CDE,
+						JBN_NAM,
+						SHT_NUM,
+						MNG_CDE,
+						SEC_IDN,
+						CNT_NUM,
+						OPN_YMD,
+						MNG_ADR,
+						PRK_TEL,
+						IDT_NUM,
+						PRK_NAM,
+						PST_CDE,
+						CHR_CDE,
+						FEE_EXP,
+						PRK_CNT,
+						HKP_CNT,
+						PRK_ARA,
+						OPN_TIM,
+						CLS_TIM,
+						PKL_CDE,
+						ISU_CDE,
+						SYS_CHK,
+						SHAPE_AREA,
+						SHAPE_LEN,
+						THE_GEOM
+					FROM O2M44200.RDL_PAKP_AS
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="ftrIdn">
+						FTR_IDN = #ftrIdn#
+						</isNotEmpty>
+						
+						ORDER BY FTR_IDN DESC
+				) TMP
+			)B
+	</select>	
+
+</sqlMap>

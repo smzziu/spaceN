@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="notice">
+
+	<resultMap id="resultInfo" class="entityMap" >
+		<result column="IDE" property="ide"/> 
+		<result column="SUBJECT" property="subject"/>
+		<result column="WRITER" property="writer"/>
+		<result column="CONTENT" property="content" jdbcType="CLOB" javaType="String"/>
+		<result column="CDATE" property="regDate"/>
+		<result column="REPLY" property="reply"/>  
+		<result column="HIT_CNT" property="hitCnt"/>
+		<result column="DAY" property="day"/> 
+		<result column="FILE_SAVE" property="file"/> 
+	</resultMap>
+
+	<select id="notice.selectNoticeList" parameterClass="entityMap" resultMap="resultInfo">
+		<![CDATA[
+			SELECT *
+			FROM(
+			    SELECT ROWNUM RNUM,TMP.* FROM(
+			        SELECT	
+			            A.IDE,
+			            A.SUBJECT,
+			            A.WRITER,
+			            A.CONTENT,
+			            A.CDATE,
+			            A.REPLY,
+			            A.HIT_CNT,
+			            C. DAY,
+			            A.FILE_SAVE
+			        FROM DM_NOTICE_MA A,
+			        (SELECT IDE, TO_DATE(sysdate, 'YYYY-MM-DD HH24:MI:SS')-
+									TO_DATE(CDATE, 'YYYY-MM-DD HH24:MI:SS') DAY
+                                 FROM DM_NOTICE_MA) C
+			        WHERE A.IDE =C.IDE
+			        ORDER BY CDATE DESC     
+			    ) TMP
+			) B	
+			WHERE ROWNUM <= #recordCountPerPage# and RNUM > #firstIndex#			
+		]]>
+	</select>
+	
+	<select id="notice.selectNotice" parameterClass="entityMap" resultMap="resultInfo">
+		<![CDATA[
+			
+	        SELECT
+	            A.IDE,
+	            A.SUBJECT,
+	            A.WRITER,
+	            A.CONTENT,
+	            A.CDATE,
+	            A.REPLY,
+	            A.HIT_CNT,
+	            C. DAY, 
+	            A.FILE_SAVE
+	        FROM DM_NOTICE_MA A, 
+	        		(SELECT IDE, TO_DATE(sysdate, 'YYYY-MM-DD HH24:MI:SS')-
+									TO_DATE(CDATE, 'YYYY-MM-DD HH24:MI:SS') DAY
+                                 FROM DM_NOTICE_MA) C 
+	        WHERE A.IDE=C.IDE
+	        AND A.IDE = #ide#      
+			
+		]]>
+	</select>
+	
+	<select id="notice.selectNoticeListTotCnt" parameterClass="entityMap" resultClass="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM DM_NOTICE_MA
+		]]>
+	</select>
+	
+	<insert id="notice.insertNotice">
+		<![CDATA[
+			INSERT INTO DM_NOTICE_MA(
+	  			 IDE
+			 	,SUBJECT
+			 	,WRITER
+			  	,CONTENT
+				,CDATE
+				,REPLY
+				,FILE_SAVE
+				) VALUES (
+				 SE_NOTICE_MA.nextval
+				 ,#subject#
+				 ,#writer#  
+				 ,#content#   
+				 ,sysdate
+				 ,null
+				 ,#file_save#
+				)
+		]]>
+	</insert>
+	
+	<insert id="notice.updateNotice">
+			UPDATE DM_NOTICE_MA 
+			SET SUBJECT=#subject#
+				,CONTENT=#content#
+				,CDATE=sysdate
+				<isNotEmpty property="file_save">
+					,FILE_SAVE=#file_save#
+				</isNotEmpty>
+				<isEmpty property="file_save">
+					,FILE_SAVE=null
+				</isEmpty>
+			where 1=1
+			and IDE=#ide#
+	</insert>
+	
+	<insert id="notice.deleteNotice">
+		<![CDATA[
+			DELETE FROM DM_NOTICE_MA
+			WHERE 1=1
+			AND IDE=#ide#			
+		]]>
+	</insert>
+	
+	<update id="notice.updateUsrHitCn">
+
+		UPDATE DM_NOTICE_MA SET 
+			HIT_CNT = HIT_CNT + 1
+		WHERE IDE=#ide#
+	</update>
+	
+	<select id="notice.selectSearchList" parameterClass="entityMap" resultMap="resultInfo">
+		<![CDATA[
+			
+	        SELECT
+	            A.IDE,
+	            A.SUBJECT,
+	            A.WRITER,
+	            A.CONTENT,
+	            A.CDATE,
+	            A.REPLY,
+	            A.HIT_CNT,
+	            C.DAY
+	        FROM DM_NOTICE_MA A,
+	         		(SELECT IDE, TO_DATE(sysdate, 'YYYY-MM-DD HH24:MI:SS')-
+								TO_DATE(CDATE, 'YYYY-MM-DD HH24:MI:SS') DAY
+					FROM DM_NOTICE_MA) C
+			WHERE A.IDE =C.IDE
+	        
+		]]>
+	        <isNotEmpty prepend="AND" property="search">
+	        SUBJECT like '%'||#search#||'%'
+	        OR CONTENT like '%'||#search#||'%'
+	        </isNotEmpty>
+	</select>
+	
+	<!-- 공지게시물 등록일로부터 오늘까지 날짜차이 구하는 sql -->
+	<select id="notice.selectDiffDay" parameterClass="entityMap" resultMap="resultInfo">
+		<![CDATA[
+	        SELECT DAY
+	        FROM ( SELECT COL*24*60 AS MIN,
+	        					COL*24 AS SI,
+	        					TRUNC(COL) AS DAY
+	        			FROM( SELECT TO_DATE(sysdate, 'YYYY-MM-DD HH24:MI:SS')-
+	        							TO_DATE(CDATE, 'YYYY-MM-DD HH24:MI:SS') COL
+	        					 FROM DM_NOTICE_MA
+	      	]]>
+	      						WHERE IDE = #ide#  					 
+	        					 )
+   					 )
+	        WHERE 1=1
+	
+	</select>
+	
+</sqlMap>

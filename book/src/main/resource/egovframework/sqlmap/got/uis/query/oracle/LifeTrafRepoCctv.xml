@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LifeTrafRepoCctv">
+	
+	<resultMap id="resultInfo" class="entityMap" >
+		<result column="GID" property="GID"/>
+		<result column="FTR_CDE" property="FTR_CDE"/>
+		<result column="FTR_IDN" property="FTR_IDN"/>
+		<result column="HJD_CDE" property="HJD_CDE"/>
+		<result column="BJD_CDE" property="BJD_CDE"/>
+		<result column="JBN_NAM" property="JBN_NAM"/>
+		<result column="SHT_NUM" property="SHT_NUM"/>
+		<result column="MNG_CDE" property="MNG_CDE"/>
+		<result column="SEC_IDN" property="SEC_IDN"/>
+		<result column="CNT_NUM" property="CNT_NUM"/>
+		<result column="IPG_YMD" property="IPG_YMD"/>
+		<result column="CCT_CDE" property="CCT_CDE"/>
+		<result column="MDE_NAM" property="MDE_NAM"/>
+		<result column="COM_NAM" property="COM_NAM"/>
+		<result column="GGD_CDE" property="GGD_CDE"/>
+		<result column="SYS_CHK" property="SYS_CHK"/>
+	</resultMap> 
+	
+	<resultMap id="resultGbn" class="entityMap" >
+		<result column="FTR_CDE" property="FTR_CDE"/>
+		<result column="FTR_NAM" property="FTR_NAM"/>
+	</resultMap> 	
+	<select id="cultour.LifeTrafRepoCctvL" parameterClass="entityMap" resultMap="resultInfo">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						GID,
+						FTR_CDE,
+						FTR_IDN,
+						HJD_CDE,
+						BJD_CDE,
+						JBN_NAM,
+						SHT_NUM,
+						MNG_CDE,
+						SEC_IDN,
+						CNT_NUM,
+						IPG_YMD,
+						CCT_CDE,
+						MDE_NAM,
+						COM_NAM,
+						GGD_CDE,
+						SYS_CHK,
+						THE_GEOM
+					FROM O2M44200.RDL_CCTV_PS
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="bjdCde">
+						BJD_CDE = #bjdCde#
+						</isNotEmpty>
+						<isNotEmpty prepend="AND" property="ftrCde">
+						CCT_CDE = #ftrCde#
+						</isNotEmpty>
+						ORDER BY FTR_IDN DESC
+				) TMP
+			)B
+			<!-- <WHERE ROWNUM &lt;= #recordCountPerPage# and RNUM &gt; #firstIndex# -->		
+	</select>	
+	
+	<select id="cultour.LifeTrafRepoCctvC" parameterClass="entityMap" resultClass="int">
+			SELECT
+				COUNT(*)
+			FROM O2M44200.RDL_CCTV_PS
+			WHERE 1=1
+				<isNotEmpty prepend="AND" property="bjdCde">
+				BJD_CDE = #bjdCde#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="ftrCde">
+				CCT_CDE = #ftrCde#
+				</isNotEmpty>
+	</select>	
+	
+	<select id="cultour.LifeTrafRepoCctvR" parameterClass="entityMap" resultMap="resultInfo">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						GID,
+						FTR_CDE,
+						FTR_IDN,
+						HJD_CDE,
+						BJD_CDE,
+						JBN_NAM,
+						SHT_NUM,
+						MNG_CDE,
+						SEC_IDN,
+						CNT_NUM,
+						IPG_YMD,
+						CCT_CDE,
+						MDE_NAM,
+						COM_NAM,
+						GGD_CDE,
+						SYS_CHK,
+						THE_GEOM
+					FROM O2M44200.RDL_CCTV_PS
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="ftrIdn">
+						FTR_IDN = #ftrIdn#
+						</isNotEmpty>
+						
+						ORDER BY FTR_IDN DESC
+				) TMP
+			)B
+	</select>	
+	
+	<select id="cultour.LifeTrafRepoCctvGbn" parameterClass="entityMap" resultMap="resultGbn">
+			SELECT FTR_NAM, FTRC.FTR_CDE
+			FROM CMT_FTRC_MA FTRC, 
+					(SELECT DISTINCT FTR_CDE
+						FROM O2M44200.RDL_CCTV_PS )B
+			WHERE FTRC.FTR_CDE = B.FTR_CDE
+			
+	</select>	
+
+</sqlMap>
