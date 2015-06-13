@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LifeTrafRepoBikelane">
+	
+	<resultMap id="resultInfo" class="entityMap" >
+		<result column="GID" property="GID"/>
+		<result column="FTR_CDE" property="FTR_CDE"/>
+		<result column="FTR_IDN" property="FTR_IDN"/>
+		<result column="HJD_CDE" property="HJD_CDE"/>
+		<result column="BJD_CDE" property="BJD_CDE"/>
+		<result column="JBN_NAM" property="JBN_NAM"/>
+		<result column="MNG_CDE" property="MNG_CDE"/>
+		<result column="SEC_IDN" property="SEC_IDN"/>
+		<result column="CNT_NUM" property="CNT_NUM"/>
+		<result column="BYC_YMD" property="BYC_YMD"/>
+		<result column="BYC_NAM" property="BYC_NAM"/>
+		<result column="BYC_CDE" property="BYC_CDE"/>
+		<result column="PLC_CDE" property="PLC_CDE"/>
+		<result column="BMT_CDE" property="BMT_CDE"/>
+		<result column="BYC_LEN" property="BYC_LEN"/>
+		<result column="BYC_WID" property="BYC_WID"/>
+		<result column="NAT_AMT" property="NAT_AMT"/>
+		<result column="CIT_AMT" property="CIT_AMT"/>
+		<result column="ETC_AMT" property="ETC_AMT"/>
+		<result column="DWY_CDE" property="DWY_CDE"/>
+		<result column="SYS_CHK" property="SYS_CHK"/>
+		<result column="SHAPE_AREA" property="SHAPE_AREA"/>
+		<result column="SHAPE_LEN" property="SHAPE_LEN"/>
+	</resultMap> 
+	<resultMap id="resultGbn" class="entityMap" >
+		<result column="FTR_CDE" property="FTR_CDE"/>
+		<result column="FTR_NAM" property="FTR_NAM"/>
+	</resultMap> 	
+	<select id="cultour.LifeTrafRepoBikelaneL" parameterClass="entityMap" resultMap="resultInfo">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						GID,
+						FTR_CDE,
+						FTR_IDN,
+						HJD_CDE,
+						BJD_CDE,
+						JBN_NAM,
+						MNG_CDE,
+						SEC_IDN,
+						CNT_NUM,
+						BYC_YMD,
+						BYC_NAM,
+						BYC_CDE,
+						PLC_CDE,
+						BMT_CDE,
+						BYC_LEN,
+						BYC_WID,
+						NAT_AMT,
+						CIT_AMT,
+						ETC_AMT,
+						DWY_CDE,
+						SYS_CHK,
+						SHAPE_AREA,
+						SHAPE_LEN,
+						THE_GEOM
+					FROM O2M44200.RDL_BYCP_AS
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="bjdCde">
+						BJD_CDE = #bjdCde#
+						</isNotEmpty>
+						<isNotEmpty prepend="AND" property="ftrCde">
+						BYC_CDE = #ftrCde#
+						</isNotEmpty>
+						ORDER BY FTR_IDN DESC
+				) TMP
+			)B
+			<!-- <WHERE ROWNUM &lt;= #recordCountPerPage# and RNUM &gt; #firstIndex# -->		
+	</select>	
+	
+	<select id="cultour.LifeTrafRepoBikelaneC" parameterClass="entityMap" resultClass="int">
+			SELECT
+				COUNT(*)
+			FROM O2M44200.RDL_BYCP_AS
+			WHERE 1=1
+				<isNotEmpty prepend="AND" property="bjdCde">
+				BJD_CDE = #bjdCde#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="ftrCde">
+				BYC_CDE = #ftrCde#
+				</isNotEmpty>
+	</select>	
+	
+	<select id="cultour.LifeTrafRepoBikelaneR" parameterClass="entityMap" resultMap="resultInfo">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						GID,
+						FTR_CDE,
+						FTR_IDN,
+						HJD_CDE,
+						BJD_CDE,
+						JBN_NAM,
+						MNG_CDE,
+						SEC_IDN,
+						CNT_NUM,
+						BYC_YMD,
+						BYC_NAM,
+						BYC_CDE,
+						PLC_CDE,
+						BMT_CDE,
+						BYC_LEN,
+						BYC_WID,
+						NAT_AMT,
+						CIT_AMT,
+						ETC_AMT,
+						DWY_CDE,
+						SYS_CHK,
+						SHAPE_AREA,
+						SHAPE_LEN,
+						THE_GEOM
+					FROM O2M44200.RDL_BYCP_AS
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="ftrIdn">
+						FTR_IDN = #ftrIdn#
+						</isNotEmpty>
+						
+						ORDER BY FTR_IDN DESC
+				) TMP
+			)B
+			<!-- <WHERE ROWNUM &lt;= #recordCountPerPage# and RNUM &gt; #firstIndex# -->		
+	</select>	
+
+	<select id="cultour.LifeTrafRepoBikelaneGbn" parameterClass="entityMap" resultMap="resultGbn">
+			SELECT FTR_NAM, FTRC.FTR_CDE
+			FROM CMT_FTRC_MA FTRC, 
+					(SELECT DISTINCT FTR_CDE
+						FROM O2M44200.RDL_BYCP_AS )B
+			WHERE FTRC.FTR_CDE = B.FTR_CDE
+			
+	</select>	
+</sqlMap>

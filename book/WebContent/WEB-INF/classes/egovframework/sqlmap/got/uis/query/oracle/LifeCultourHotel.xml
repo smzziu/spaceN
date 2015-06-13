@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LifeCultourHotel">
+	
+	<resultMap id="resultInfo" class="entityMap" >
+		<result column="GID" property="GID"/>
+		<result column="FTR_CDE" property="FTR_CDE"/>
+		<result column="FTR_IDN" property="FTR_IDN"/>
+		<result column="BJD_CDE" property="BJD_CDE"/>
+		<result column="DET_ADR" property="DET_ADR"/>
+		<result column="TEL_NUM" property="TEL_NUM"/>
+		<result column="DET_EX1" property="DET_EX1"/>
+		<result column="DET_EX2" property="DET_EX2"/>
+		<result column="DET_EX3" property="DET_EX3"/>
+		<result column="DET_EX4" property="DET_EX4"/>
+		<result column="DET_EX5" property="DET_EX5"/>
+		<result column="HTL_NAM" property="HTL_NAM"/>
+		<result column="HOM_PAG" property="HOM_PAG"/>
+		<result column="point_X" property="point_X"/>
+		<result column="point_Y" property="point_Y"/>
+	</resultMap> 
+	<resultMap id="resultGbn" class="entityMap" >
+		<result column="FTR_CDE" property="FTR_CDE"/>
+		<result column="FTR_NAM" property="FTR_NAM"/>
+	</resultMap> 	
+	<select id="cultour.LifeCultourHotelL" parameterClass="entityMap" resultMap="resultInfo">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						GID,
+						FTR_CDE,
+						FTR_IDN,
+						BJD_CDE,
+						DET_ADR,
+						TEL_NUM,
+						DET_EX1,
+						DET_EX2,
+						DET_EX3,
+						DET_EX4,
+						DET_EX5,
+						HTL_NAM,
+						HOM_PAG,
+						SDO_GEOM.SDO_CENTROID(the_geom,0.000001).SDO_POINT.X as point_X, 
+			    		SDO_GEOM.SDO_CENTROID(the_geom,0.000001).SDO_POINT.Y as point_Y,
+						THE_GEOM
+					FROM LFL_HOTL_PS
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="bjdCde">
+						BJD_CDE = #bjdCde#
+						</isNotEmpty>
+						<isNotEmpty prepend="AND" property="ftrCde">
+						FTR_CDE = #ftrCde#
+						</isNotEmpty>
+						<isNotEmpty prepend="AND" property="htlNam">
+						HTL_NAM  Like '%' ||#htlNam#|| '%'
+						</isNotEmpty>
+						ORDER BY FTR_IDN DESC
+				) TMP
+			)B
+			WHERE ROWNUM &lt;= #recordCountPerPage# and RNUM &gt; #firstIndex#		
+	</select>	
+	
+	<select id="cultour.LifeCultourHotelC" parameterClass="entityMap" resultClass="int">
+			SELECT
+				COUNT(*)
+			FROM LFL_HOTL_PS
+			WHERE 1=1
+				<isNotEmpty prepend="AND" property="bjdCde">
+				BJD_CDE = #bjdCde#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="ftrCde">
+				FTR_CDE = #ftrCde#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="htlNam">
+				HTL_NAM  Like '%' ||#htlNam#|| '%'
+				</isNotEmpty>
+	</select>	
+	
+	<select id="cultour.LifeCultourHotelR" parameterClass="entityMap" resultMap="resultInfo">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						GID,
+						FTR_CDE,
+						FTR_IDN,
+						BJD_CDE,
+						DET_ADR,
+						TEL_NUM,
+						DET_EX1,
+						DET_EX2,
+						DET_EX3,
+						DET_EX4,
+						DET_EX5,
+						HTL_NAM,
+						HOM_PAG,
+						SDO_GEOM.SDO_CENTROID(the_geom,0.000001).SDO_POINT.X as point_X, 
+			    		SDO_GEOM.SDO_CENTROID(the_geom,0.000001).SDO_POINT.Y as point_Y,
+						THE_GEOM
+					FROM LFL_HOTL_PS
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="ftrIdn">
+						FTR_IDN = #ftrIdn#
+						</isNotEmpty>
+						
+						ORDER BY FTR_IDN DESC
+				) TMP
+			)B
+					
+	</select>	
+	<select id="cultour.LifeCultourHotelGbn" parameterClass="entityMap" resultMap="resultGbn">
+		SELECT FTR_NAM, FTRC.FTR_CDE
+			FROM CMT_FTRC_MA FTRC, 
+					(SELECT DISTINCT FTR_CDE
+						FROM LFL_HOTL_PS
+						WHERE 1=1
+						<isNotEmpty prepend="AND" property="ftrIdn">
+							FTR_IDN = #ftrIdn#
+						</isNotEmpty>
+						)B
+			WHERE FTRC.FTR_CDE = B.FTR_CDE
+			
+	</select>	
+	
+</sqlMap>

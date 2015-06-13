@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="UisCfSearCbnd">
+	
+	<resultMap id="resultInfo" class="entityMap" >
+		<result column="GID" property="GID"/>
+		<result column="PNU" property="PNU"/>
+		<result column="JIBUN" property="JIBUN"/>
+		<result column="BCHK" property="BCHK"/>
+		<result column="SHAPE_AREA" property="SHAPE_AREA"/>
+		<result column="SHAPE_LEN" property="SHAPE_LEN"/>
+		<result column="BJD_CDE" property="BJD_CDE"/>
+
+	</resultMap> 
+
+
+	<select id="cf.UisCfSearCbndL" parameterClass="entityMap" resultMap="resultInfo">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						GID,
+						PNU,
+						JIBUN,
+						BCHK,
+						SHAPE_AREA,
+						SHAPE_LEN,
+						SUBSTR(PNU, 1, 10) AS BJD_CDE,
+						THE_GEOM
+					FROM LP_PA_CBND
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="pnu">
+						PNU LIKE  '%' || #pnu# || '%'
+						</isNotEmpty>
+				) TMP
+			)B
+		
+	</select>	
+	
+	<select id="cf.UisCfSearCbndC" parameterClass="entityMap" resultClass="int">
+		
+			SELECT
+				COUNT(*)
+			FROM LP_PA_CBND
+			WHERE 1=1
+				<isNotEmpty prepend="AND" property="pnu">
+				PNU LIKE '%' || #pnu# || '%'
+				</isNotEmpty>
+	</select>	
+
+</sqlMap>

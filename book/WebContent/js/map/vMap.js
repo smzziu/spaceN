@@ -58,7 +58,7 @@ var mapView;
 var map3DEventLast;
 setTimeout(function(){
 	vworld.showMode = false; 
-	vworld.init("vMap", "earth-first", 
+	vworld.init("vMap", "raster-first", 
 		function() {        
 			apiMap = this.vmap; 
 			

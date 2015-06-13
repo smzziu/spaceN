@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="UisCfSearBldg">
+	
+	<resultMap id="resultInfo" class="entityMap" >
+		<result column="GID" property="GID"/>
+		<result column="SIG_CD" property="SIG_CD"/>
+		<result column="BUL_MAN_NO" property="BUL_MAN_NO"/>
+		<result column="RN_CD" property="RN_CD"/>
+		<result column="RDS_MAN_NO" property="RDS_MAN_NO"/>
+		<result column="BSI_INT_SN" property="BSI_INT_SN"/>
+		<result column="EQB_MAN_SN" property="EQB_MAN_SN"/>
+		<result column="BULD_SE_CD" property="BULD_SE_CD"/>
+		<result column="BULD_MNNM" property="BULD_MNNM"/>
+		<result column="BULD_SLNO" property="BULD_SLNO"/>
+		<result column="BULD_NM" property="BULD_NM"/>
+		<result column="BUL_ENG_NM" property="BUL_ENG_NM"/>
+		<result column="BULD_NM_DC" property="BULD_NM_DC"/>
+		<result column="BULD_STTUS" property="BULD_STTUS"/>
+		<result column="BDTYP_CD" property="BDTYP_CD"/>
+		<result column="BUL_DPN_SE" property="BUL_DPN_SE"/>
+		<result column="GRO_FLO_CO" property="GRO_FLO_CO"/>
+		<result column="UND_FLO_CO" property="UND_FLO_CO"/>
+		<result column="ZIP" property="ZIP"/>
+		<result column="POS_BUL_NM" property="POS_BUL_NM"/>
+		<result column="POS_BUL_YN" property="POS_BUL_YN"/>
+		<result column="REG_PUB_NM" property="REG_PUB_NM"/>
+		<result column="EMD_CD" property="EMD_CD"/>
+		<result column="LI_CD" property="LI_CD"/>
+		<result column="MNTN_YN" property="MNTN_YN"/>
+		<result column="LNBR_MNNM" property="LNBR_MNNM"/>
+		<result column="LNBR_SLNO" property="LNBR_SLNO"/>
+		<result column="COMPET_DE" property="COMPET_DE"/>
+		<result column="NTFC_DE" property="NTFC_DE"/>
+		<result column="MVM_RES_CD" property="MVM_RES_CD"/>
+		<result column="MVMN_RESN" property="MVMN_RESN"/>
+		<result column="MVMN_DE" property="MVMN_DE"/>
+		<result column="OPE_MAN_ID" property="OPE_MAN_ID"/>
+		<result column="OPERT_DE" property="OPERT_DE"/>
+		<result column="IMA_FIL_SN" property="IMA_FIL_SN"/>
+		<result column="BSI_ZON_NO" property="BSI_ZON_NO"/>
+		<result column="NTI_TRG_YN" property="NTI_TRG_YN"/>
+		<result column="INPUT_MTHD" property="INPUT_MTHD"/>
+		<result column="BD_MGT_SN" property="BD_MGT_SN"/>
+		<result column="ISSU_YN" property="ISSU_YN"/>
+		<result column="SHAPE_AREA" property="SHAPE_AREA"/>
+		<result column="SHAPE_LEN" property="SHAPE_LEN"/>
+	</resultMap> 
+	
+	<resultMap id="resultInfo2" class="entityMap" >
+		<result column="GID" property="GID"/>
+	</resultMap> 
+	<resultMap id="detaliResult" class="entityMap" >
+		<result column="GID" property="GID"/>
+		<result column="BULD_NM" property="BULD_NM"/>
+		<result column="BULD_NM_DC" property="BULD_NM_DC"/>
+		<result column="BDTYP_CD" property="BDTYP_CD"/>
+		<result column="LNBR_MNNM" property="LNBR_MNNM"/>
+		<result column="LNBR_SLNO" property="LNBR_SLNO"/>
+		<result column="GRO_FLO_CO" property="GRO_FLO_CO"/>
+		<result column="UND_FLO_CO" property="UND_FLO_CO"/>
+		<result column="SHAPE_AREA" property="SHAPE_AREA"/>
+		<result column="SHAPE_LEN" property="SHAPE_LEN"/>
+		<result column="BJD_NAM" property="BJD_NAM"/>
+		<result column="CDE_NAM" property="CDE_NAM"/>
+	</resultMap>
+
+	
+	<select id="cf.UisCfSearBldgL" parameterClass="entityMap" resultMap="resultInfo">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						A.GID,
+						A.SIG_CD,
+						A.BUL_MAN_NO,
+						A.RN_CD,
+						A.RDS_MAN_NO,
+						A.BSI_INT_SN,
+						A.EQB_MAN_SN,
+						A.BULD_SE_CD,
+						A.BULD_MNNM, 
+						A.BULD_SLNO, 
+						A.BULD_NM,   
+						A.BUL_ENG_NM,
+						A.BULD_NM_DC,
+						A.BULD_STTUS,
+						A.BDTYP_CD,
+						A.BUL_DPN_SE,
+						A.GRO_FLO_CO,
+						A.UND_FLO_CO,
+						A.ZIP,       
+						A.POS_BUL_NM,
+						A.POS_BUL_YN,
+						A.REG_PUB_NM,
+						A.EMD_CD,    
+						A.LI_CD,     
+						A.MNTN_YN,   
+						A.LNBR_MNNM, 
+						A.LNBR_SLNO,
+						A.COMPET_DE, 
+						A.NTFC_DE,   
+						A.MVM_RES_CD,
+						A.MVMN_RESN, 
+						A.MVMN_DE,   
+						A.OPE_MAN_ID,
+						A.OPERT_DE,  
+						A.IMA_FIL_SN,
+						A.BSI_ZON_NO,
+						A.NTI_TRG_YN,
+						A.INPUT_MTHD,
+						A.BD_MGT_SN, 
+						A.ISSU_YN,   
+						A.SHAPE_AREA,
+						A.SHAPE_LEN, 
+						A.THE_GEOM
+					FROM TL_SPBD_BULD A, O2M44200.CMT_LGAR_MA B
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="buldNm">
+						A.BULD_NM Like '%' ||#buldNm#|| '%'
+						</isNotEmpty>
+						<isNotEmpty prepend="AND" property="hjdExp">
+						B.BJD_CDE = #hjdExp#
+						</isNotEmpty>
+						AND SUBSTR(A.BD_MGT_SN,1,10) = B.BJD_CDE
+						ORDER BY BUL_MAN_NO DESC
+				) TMP
+			)B
+	</select>	
+	
+	<select id="cf.UisCfSearBldgL2" parameterClass="entityMap" resultMap="resultInfo2">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						A.GID						
+					FROM TL_SPBD_BULD A, O2M44200.CMT_LGAR_MA B
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="buldNm">
+						A.BULD_NM = #buldNm#
+						</isNotEmpty>						
+						AND SUBSTR(A.BD_MGT_SN,1,10) = B.BJD_CDE
+						ORDER BY BUL_MAN_NO DESC
+				) TMP
+			)B
+	</select>
+	
+	<select id="cf.UisCfSearBldgC" parameterClass="entityMap" resultClass="int">
+			SELECT
+				COUNT(*)
+			FROM TL_SPBD_BULD A, O2M44200.CMT_LGAR_MA B
+			WHERE 1=1
+				<isNotEmpty prepend="AND" property="buldNm">
+				A.BULD_NM Like '%' ||#buldNm#|| '%'
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="hjdExp">
+				B.BJD_CDE = #hjdExp#
+				</isNotEmpty>
+				AND SUBSTR(A.BD_MGT_SN,1,10) = B.BJD_CDE
+	</select>	
+	
+	<select id="cf.UisCfSearBldgR" parameterClass="entityMap" resultMap="detaliResult">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						A.GID,
+						A.BULD_NM,   
+						A.BULD_NM_DC,
+						A.BDTYP_CD,
+						A.GRO_FLO_CO,
+						A.UND_FLO_CO,
+						A.LNBR_MNNM, 
+						A.LNBR_SLNO,
+						A.SHAPE_AREA,
+						A.SHAPE_LEN, 
+						B.BJD_NAM,
+						C.CDE_NAM,
+						A.THE_GEOM
+					FROM TL_SPBD_BULD A, O2M44200.CMT_LGAR_MA B, O2M44200.CMT_CODE_MA C
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="bulManNo">
+						A.BUL_MAN_NO = #bulManNo#
+						</isNotEmpty>
+						<isNotEmpty prepend="AND" property="bdtypCd">
+						C.ALL_CDE = #bdtypCd#
+						</isNotEmpty>
+						AND SUBSTR(A.BD_MGT_SN,1,10) = B.BJD_CDE
+						ORDER BY A.BUL_MAN_NO DESC
+				) TMP
+			)B
+			
+	</select>	
+
+</sqlMap>

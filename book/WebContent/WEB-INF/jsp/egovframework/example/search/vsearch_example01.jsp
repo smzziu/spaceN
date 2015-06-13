@@ -53,6 +53,7 @@ function vSearchL(){
 	<div class="search_terms">
 		<div class="search_title"> 
 			<img src="/images/search/searchicon_white.png" alt="" class="searchicon_white"/>
+			<!-- 검색 API 종류 -->
 			<select id="vCategory">
 				<option value="Poi">명칭</option>
 				<option value="Jibun">지번</option>
@@ -68,10 +69,12 @@ function vSearchL(){
 					<ul>
 						<li><img src="/images/search/list-st.png" alt="" class="list-st"/>검색어 :
 							<span style="padding:0 0 0 4px;"></span>
+							<!-- 검색 질의문 및 엔터 이벤트 발생시 vSearch()함수 호출 -->
 							<input type="text" id="vNm" class="terms_input" name="vNm" value="" onkeypress="if (event.keyCode==13){ javascript:vSearchL();};"/>
 						</li>
 					</ul>
 					<div class="search_btn">
+						<!-- 이미지 클릭시 vSearch() 함수 호출 -->
 						<a href="javascript:vSearchL();"><img src="/images/search/search_btn.png" alt="" /></a>
 					</div>
 				</td>

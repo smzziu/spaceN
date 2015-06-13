@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LifeCultourMineral">
+	
+	<resultMap id="resultInfo" class="entityMap" >
+		<result column="GID" property="GID"/>
+		<result column="FTR_CDE" property="FTR_CDE"/>
+		<result column="FTR_IDN" property="FTR_IDN"/>
+		<result column="HJD_CDE" property="HJD_CDE"/>
+		<result column="BJD_CDE" property="BJD_CDE"/>
+		<result column="JBN_NAM" property="JBN_NAM"/>
+		<result column="SHT_NUM" property="SHT_NUM"/>
+		<result column="MNG_CDE" property="MNG_CDE"/>
+		<result column="SPR_NAM" property="SPR_NAM"/>
+		<result column="USR_DAY" property="USR_DAY"/>
+		<result column="SPR_YMD" property="SPR_YMD"/>
+		<result column="IFO_EXP" property="IFO_EXP"/>
+		<result column="SPR_EXP" property="SPR_EXP"/>
+		<result column="SPR_DES" property="SPR_DES"/>
+		<result column="SPR_EXT" property="SPR_EXT"/>
+		<result column="SYS_CHK" property="SYS_CHK"/>
+		<result column="point_X" property="point_X"/>
+		<result column="point_Y" property="point_Y"/>
+	</resultMap> 
+	<resultMap id="resultGbn" class="entityMap" >
+		<result column="FTR_CDE" property="FTR_CDE"/>
+		<result column="FTR_NAM" property="FTR_NAM"/>
+	</resultMap> 		
+	<select id="cultour.LifeCultourMineralL" parameterClass="entityMap" resultMap="resultInfo">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						GID,
+						FTR_CDE,
+						FTR_IDN,
+						HJD_CDE,
+						BJD_CDE,
+						JBN_NAM,
+						SHT_NUM,
+						MNG_CDE,
+						SPR_NAM,
+						USR_DAY,
+						SPR_YMD,
+						IFO_EXP,
+						SPR_EXP,
+						SPR_DES,
+						SPR_EXT,
+						SYS_CHK,
+						SDO_GEOM.SDO_CENTROID(the_geom,0.000001).SDO_POINT.X as point_X, 
+			    		SDO_GEOM.SDO_CENTROID(the_geom,0.000001).SDO_POINT.Y as point_Y,
+						THE_GEOM
+					FROM WTL_SPRI_PS
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="bjdCde">
+						BJD_CDE = #bjdCde#
+						</isNotEmpty>
+						<isNotEmpty prepend="AND" property="sprNam">
+						SPR_NAM  Like '%' ||#sprNam#|| '%'
+						</isNotEmpty>
+						ORDER BY FTR_IDN DESC
+				) TMP
+			)B
+			WHERE ROWNUM &lt;= #recordCountPerPage# and RNUM &gt; #firstIndex#		
+	</select>	
+	
+	<select id="cultour.LifeCultourMineralC" parameterClass="entityMap" resultClass="int">
+			SELECT
+				COUNT(*)
+			FROM WTL_SPRI_PS
+			WHERE 1=1
+				<isNotEmpty prepend="AND" property="bjdCde">
+				BJD_CDE = #bjdCde#
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="sprNam">
+				SPR_NAM  Like '%' ||#sprNam#|| '%'
+				</isNotEmpty>
+	</select>	
+	
+	<select id="cultour.LifeCultourMineralR" parameterClass="entityMap" resultMap="resultInfo">
+		
+			SELECT
+				*
+			FROM(
+				SELECT ROWNUM RNUM,TMP.* FROM(
+					SELECT
+						GID,
+						FTR_CDE,
+						FTR_IDN,
+						HJD_CDE,
+						BJD_CDE,
+						JBN_NAM,
+						SHT_NUM,
+						MNG_CDE,
+						SPR_NAM,
+						USR_DAY,
+						SPR_YMD,
+						IFO_EXP,
+						SPR_EXP,
+						SPR_DES,
+						SPR_EXT,
+						SYS_CHK,
+						SDO_GEOM.SDO_CENTROID(the_geom,0.000001).SDO_POINT.X as point_X, 
+			    		SDO_GEOM.SDO_CENTROID(the_geom,0.000001).SDO_POINT.Y as point_Y,
+						THE_GEOM
+					FROM WTL_SPRI_PS
+					WHERE 1=1
+						<isNotEmpty prepend="AND" property="ftrIdn">
+						FTR_IDN = #ftrIdn#
+						</isNotEmpty>
+						
+						ORDER BY FTR_IDN DESC
+				) TMP
+			)B
+			<!-- <WHERE ROWNUM &lt;= #recordCountPerPage# and RNUM &gt; #firstIndex# -->		
+	</select>	
+	
+	<select id="cultour.LifeCultourMineralGbn" parameterClass="entityMap" resultMap="resultGbn">
+			SELECT FTR_NAM, FTRC.FTR_CDE
+			FROM CMT_FTRC_MA FTRC, 
+					(SELECT DISTINCT FTR_CDE
+						FROM WTL_SPRI_PS
+						WHERE 1=1
+						<isNotEmpty prepend="AND" property="ftrIdn">
+							FTR_IDN = #ftrIdn#
+						</isNotEmpty>
+						)B
+			WHERE FTRC.FTR_CDE = B.FTR_CDE
+					
+			
+	</select>	
+	
+</sqlMap>
