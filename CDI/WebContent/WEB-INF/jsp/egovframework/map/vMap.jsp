@@ -109,83 +109,6 @@ function resizeCenter(){
 	apiMap.updateSize();
 }
 
-function boundtest(){
-	var getMapCenter = apiMap.getExtent();
-  	var bounds = new OpenLayers.Bounds();
-    bounds.extend(getMapCenter);
-	alert(bounds.toBBOX());
-	
-    var filterText = "BBOX=" + bounds.toBBOX();
-    var params = "typeNames=sf:data_re";
-    //var params = "TYPENAME=LT_C_BLDGMETA";
-    params += "&" + filterText;
-    params += "&SERVICE=WFS";
-    params += "&REQUEST=GetFeature";
-    params += "&SRSNAME=EPSG:900913";
-  //  params += "&OUTPUT=text/xml;subType=gml/3.1.1/profiles/gmlsf/1.0.0/0";
-    params += "&VERSION=1.1.0";
-    params += "&EXCEPTIONS=text/xml";
-    
-    OpenLayers.loadURL = function(uri, params, caller,
-    	    onComplete, onFailure) {
-    			if(typeof params == 'string') {
-    			params = OpenLayers.Util.getParameters(params);
-    			} 
-    			
-    			var success = (onComplete) ? onComplete : OpenLayers.nullHandler;
-    			var failure = (onFailure) ? onFailure : OpenLayers.nullHandler;
-    			
-    			return OpenLayers.Request.POST({	
-    			url: uri, params: params,
-    			success: success, failure: failure, scope: caller
-    			});
-    		};
-    		
-	OpenLayers.loadURL("/proxy/proxy.jsp", "?url=" + escape("http://localhost:8087/geoserver/sf/wfs?" + params), this, chartList);
-    
-    return;
-	
-}
-
-function chartList(response){
-    var g = new OpenLayers.Format.GML.v3();
-    var features = g.read(response.responseText);
-    
-    
-    apiMap.vectorLayer.addFeatures(features);
-    var popX;
-    var popY;
-    var pop_14;
-    var pop_14_65;
-    var pop_14_75;
-    var natureTown;
-	if (features != null && features.length > 0) {
-		alert(11);
-		for(var i=0;i<features.length;i++) {
-			for (var j in features[i].attributes) {
-				if(j == "pop_14"){
-					pop_14 = features[i].attributes[j];
-				}
-				if(j == "pop_14_65"){
-					pop_14_65 = features[i].attributes[j];
-				}
-				if(j == "pop_14_75"){
-					pop_14_75 = features[i].attributes[j];
-				}
-				if(j == "자연마을명"){
-					natureTown = features[i].attributes[j];
-					
-					popX = features[i].geometry.getCentroid().x;
-					popY = features[i].geometry.getCentroid().y;
-					
-					createPieChart(pop_14, pop_14_65, pop_14_75, natureTown, popX, popY);
-				}
-				
-			}
-		}
-	} 
-}
-
 
 </script>
 </head>
@@ -292,7 +215,7 @@ function chartList(response){
 				<li><a href="#" class="topbtn_area" onclick="apiMap.calcArea();" title="면적"></a></li>
 				<li><a href="#" class="topbtn_full" onclick="apiMap.fullExtent();" title="전체보기"></a></li>
 				<li><a href="#" class="topbtn_buffer" onclick="getWfsValue('buffer');" title="버퍼"></a></li>
-				<li><a href="#" class="topbtn_buffer" onclick="boundtest();" title="버퍼"></a></li>
+				<li><a href="#" class="topbtn_buffer" onclick="getBoundVisible();" title="버퍼"></a></li>
 				<li><a href="#" class="topbtn_rode" onclick="" title="로드뷰"></a></li>
 				<li>
 					<span style="padding:1px 3px 0 10px;"><font color="white">축척</font></span>			

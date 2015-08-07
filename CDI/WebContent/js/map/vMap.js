@@ -505,19 +505,6 @@ function getWfsValue(control){
 	pClickControl.activate();
 }
 
-function createBounds(bounds){ // 해당 폴리곤 객체의 Boundary를 표시하기 위한 사각형 폴리곤 그리기 
-	var points = [];
-	points.push(new OpenLayers.Geometry.Point(bounds.left, bounds.top)); 
-	points.push(new OpenLayers.Geometry.Point(bounds.right, bounds.top)); 
-	points.push(new OpenLayers.Geometry.Point(bounds.right, bounds.bottom)); 
-	points.push(new OpenLayers.Geometry.Point(bounds.left, bounds.bottom)); 
-	
-	var style = {strokeColor: "#00FF00", fillColor: "#00FF00", strokeOpacity: 1, fillOpacity:0.1, strokeWidth: 2}; 
-	var poly = new vworld.Polygon(points, style);
-	
-	apiMap.vectorLayer.addFeatures([poly]);
-}
-
 /**
  * 데이터API 정보 조회
  * @param evt
@@ -570,6 +557,44 @@ function getWfsclick(evt){
 	};
 	
 	OpenLayers.loadURL("/proxy/proxy.jsp", "?url=" + escape("http://localhost:8087/geoserver/sf/wfs?" + params), this, wfsClickResult);
+    return;
+	
+}
+
+function getBoundVisible(){
+	var getMapCenter = apiMap.getExtent();
+  	var bounds = new OpenLayers.Bounds();
+    bounds.extend(getMapCenter);
+	alert(bounds.toBBOX());
+	
+    var filterText = "BBOX=" + bounds.toBBOX();
+    var params = "typeNames=sf:data_re";
+    //var params = "TYPENAME=LT_C_BLDGMETA";
+    params += "&" + filterText;
+    params += "&SERVICE=WFS";
+    params += "&REQUEST=GetFeature";
+    params += "&SRSNAME=EPSG:900913";
+  //  params += "&OUTPUT=text/xml;subType=gml/3.1.1/profiles/gmlsf/1.0.0/0";
+    params += "&VERSION=1.1.0";
+    params += "&EXCEPTIONS=text/xml";
+    
+    OpenLayers.loadURL = function(uri, params, caller,
+    	    onComplete, onFailure) {
+    			if(typeof params == 'string') {
+    			params = OpenLayers.Util.getParameters(params);
+    			} 
+    			
+    			var success = (onComplete) ? onComplete : OpenLayers.nullHandler;
+    			var failure = (onFailure) ? onFailure : OpenLayers.nullHandler;
+    			
+    			return OpenLayers.Request.POST({	
+    			url: uri, params: params,
+    			success: success, failure: failure, scope: caller
+    			});
+    		};
+    		
+	OpenLayers.loadURL("/proxy/proxy.jsp", "?url=" + escape("http://localhost:8087/geoserver/sf/wfs?" + params), this, wfsClickResult);
+    
     return;
 	
 }

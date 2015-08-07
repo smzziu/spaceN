@@ -27,15 +27,6 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	<servlet>
-		<servlet-name>proxy</servlet-name>
-		<servlet-class>egovframework.got.vmap.proxyServlet</servlet-class>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>proxy</servlet-name>
-		<url-pattern>/proxy.do</url-pattern>
-	</servlet-mapping>
 	
 	<servlet>
 		<servlet-name>action</servlet-name>
