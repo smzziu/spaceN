@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="sample">
+	
+
+	<resultMap id="resultInfo" class="entityMap" >
+		<result column="IDE" property="ide"/> 
+		<result column="SUBJUCT" property="subject"/>
+		<result column="CONTENT" property="content" jdbcType="CLOB" javaType="String"/> 
+		
+	</resultMap> 
+
+
+	<select id="sample.selectBoardList" parameterClass="entityMap" resultMap="resultInfo">
+		<![CDATA[
+			SELECT 
+			    *
+			FROM(
+			    SELECT ROWNUM RNUM,TMP.* FROM(
+			        SELECT
+			            IDE,
+			            SUBJUCT,
+			            CONTENT,
+			            CDATE
+			        FROM GOT_SAMPLE_BOARD
+			        WHERE 1=1 
+			        ORDER BY IDE DESC     
+			    ) TMP
+			) B	
+			WHERE ROWNUM <= #recordCountPerPage# and RNUM > #firstIndex#			
+		]]>
+	</select>
+	
+	<select id="sample.selectBoard" parameterClass="entityMap" resultMap="resultInfo">
+		<![CDATA[
+			
+	        SELECT
+	            IDE,
+	            SUBJUCT,
+	            CONTENT,
+	            CDATE
+	        FROM GOT_SAMPLE_BOARD
+	        WHERE 1=1
+	        AND IDE = #ide#      
+			
+		]]>
+	</select>
+	
+	<select id="sample.selectBoardListTotCnt" parameterClass="entityMap" resultClass="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM GOT_SAMPLE_BOARD
+		]]>
+	</select>
+	
+	<insert id="sample.insertBoard">
+		<![CDATA[
+			INSERT INTO GOT_SAMPLE_BOARD (
+	  			 IDE
+			 	,SUBJUCT
+			  	,CONTENT
+				,CDATE
+				) VALUES (
+				  #ide#
+				 ,#subject# 
+				 ,#content#   
+				 ,sysdate
+				) 
+		]]>
+	</insert>
+	
+	<insert id="sample.updateBoard">
+		<![CDATA[
+			UPDATE GOT_SAMPLE_BOARD 
+			SET SUBJUCT=#subject#
+				,CONTENT=#content#
+				,CDATE=sysdate
+			where 1=1
+			and IDE=#ide#
+		]]>
+	</insert>
+	
+	<insert id="sample.deleteBoard">
+		<![CDATA[
+			DELETE FROM GOT_SAMPLE_BOARD
+			WHERE 1=1
+			AND IDE=#ide#			
+		]]>
+	</insert>
+</sqlMap>

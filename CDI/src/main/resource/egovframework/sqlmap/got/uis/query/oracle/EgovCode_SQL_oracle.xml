@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="code">
+<!-- 
+	<select id="code.selectCodeTableMap" parameterClass="entityMap" resultClass="entityMap">
+		<![CDATA[
+			select TBL_NAM from GDS41820.CMT_CODE_MA group by TBL_NAM order by TBL_NAM
+		]]>
+	</select>
+	
+	<select id="code.selectCodeGroupMap" parameterClass="entityMap" resultClass="entityMap">
+		<![CDATA[
+			select TBL_NAM,ATT_NAM from GDS41820.CMT_CODE_MA where TBL_NAM=#TBL_NAM# group by TBL_NAM,ATT_NAM
+		]]>
+	</select>
+ -->	
+	<select id="code.selectCodeItemList" parameterClass="entityMap" resultClass="entityMap">
+		<![CDATA[
+			select ALL_CDE,CDE_NAM from O2M44200.CMT_CODE_MA  where TBL_NAM=#TBL_NAM# and ATT_NAM =#USE_NAM#
+			order by ALL_CDE
+		]]>
+	</select>
+	<select id="code.selectFtrCdeItemList" parameterClass="entityMap" resultClass="entityMap">
+		<![CDATA[
+			select FTR_CDE,FTR_NAM from O2M44200.CMT_FTRC_MA  where USE_CHK='Y' order by FTR_CDE
+		]]>
+	</select>
+	<select id="code.selectAdarMaItemList" parameterClass="entityMap" resultClass="entityMap">
+		<![CDATA[
+			select HJD_CDE,HJD_NAM,HJD_EXP from O2M44200.CMT_ADAR_MA order by HJD_CDE
+		]]>
+	</select>
+	<select id="code.selectLgarMaItemList" parameterClass="entityMap" resultClass="entityMap">
+		<![CDATA[
+			select BJD_CDE,BJD_NAM,BJD_EXP from O2M44200.CMT_LGAR_MA 
+			where BJD_CDE != 4420000000 
+				and  BJD_CDE != 4420025000
+				and  BJD_CDE != 4420025300 
+				and  BJD_CDE != 4420031000 
+				and  BJD_CDE != 4420033000 
+				and  BJD_CDE != 4420035000 
+				and  BJD_CDE != 4420036000 
+				and  BJD_CDE != 4420037000 
+				and  BJD_CDE != 4420038000
+				and  BJD_CDE != 4420039000 
+				and  BJD_CDE != 4420040000 
+				and  BJD_CDE != 4420041000  
+			order by BJD_CDE
+		]]>
+	</select>
+	<select id="code.selectMngrMaItemList" parameterClass="entityMap" resultClass="entityMap">
+		<![CDATA[
+			select MNG_CDE,MNG_NAM,MNG_EXP from O2M44200.CMT_MNGR_MA order by MNG_CDE
+		]]>
+	</select>
+</sqlMap>

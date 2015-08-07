@@ -1,0 +1,75 @@
+body { 
+	margin:0;
+	padding:0;
+	font-family:dotum, gulim;
+	font-size:12px;
+	overflow:hidden;
+	min-width:100px;
+	}
+	
+.search_float_list-style { float:left; }
+
+.list-style_footer { margin:0 7px 0 0; }
+
+.name { font-weight:bold; color:#006297; }
+
+.tablebox { 
+	margin:0;
+	padding:0;
+	}
+
+.tablebox_center {
+	margin:0 6px;
+	height:273px;
+	background:url(/images/search/search_bg_center.png) top left repeat-x;
+	position:relative;
+	}
+	
+.tablebox_right { margin:-273px 0 0 0; float:right; }
+	
+	
+.tablebox_center ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+	
+.tablebox_content {
+	margin:0 5px;
+	padding:10px;
+	background:#FFF;
+	height:230px;
+	position:relative; top:10px;
+	overflow:hidden;
+	}
+	
+.tablebox table { 
+	margin:8px 0 0 0;
+	border-top:solid 1px #B3B3B3;
+	border-left:solid 1px #B3B3B3;
+	}
+
+.tablebox img {
+	border:0;
+	}
+	
+.tablebox td {
+	text-align:center;
+	border-right:solid 1px #B3B3B3;
+	border-bottom:solid 1px #B3B3B3;
+	height:25px;
+	}
+	
+.tablebox th {
+	text-align:center;
+	border-right:solid 1px #B3B3B3;
+	border-bottom:solid 1px #B3B3B3;
+	color:#006297;
+	height:25px;
+	}
+
+.btn_board {
+	margin:10px 0 5px 0;
+	text-align:center;
+	letter-spacing:5px;
+	}

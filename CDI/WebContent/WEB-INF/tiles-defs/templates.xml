@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<!-- Definitions for Tiles documentation   -->
+<tiles-definitions>
+
+	<definition name=".blank"  template="/WEB-INF/jsp/templates/common/layout.jsp">
+		<put-attribute name="content" value="/WEB-INF/jsp/templates/common/blank.jsp" />
+	</definition>	
+			
+	<definition name=".admin" template="/WEB-INF/jsp/templates/admin/layout.jsp">
+		<put-attribute name="title" value="GeoTwo UIS" />
+		<put-attribute name="include" value="/WEB-INF/jsp/templates/admin/include.jsp" />
+		<put-attribute name="header" value="/WEB-INF/jsp/templates/admin/header.jsp" />
+		<put-attribute name="sidemenu" value="/WEB-INF/jsp/templates/admin/sidemenu.jsp" />
+		<!-- <put-attribute name="footer" value="/WEB-INF/jsp/templates/admin/footer.jsp" /> -->
+		<put-attribute name="content" value="" />
+	</definition>
+
+</tiles-definitions>

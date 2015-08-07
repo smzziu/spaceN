@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	
+	<typeAlias alias="entityMap" type="egovframework.got.com.map.EntityMap" />
+	<typeHandler callback="org.springframework.orm.ibatis.support.ClobStringTypeHandler" javaType="string" jdbcType="CLOB"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/EgovSample_SQL_oracle.xml"/>
+	<sqlMap resource="egovframework/sqlmap/got/uis/query/oracle/EgovCode_SQL_oracle.xml"/>
+		
+</sqlMapConfig>

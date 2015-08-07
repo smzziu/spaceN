@@ -1,0 +1,81 @@
+@page a4sheet { size: 21.0cm 29.7cm }
+	@media print{
+		body { 
+			margin:0;
+			padding:0;
+			overflow:hidden;
+			height:500px;
+			}
+		
+		.print_contents {
+			margin:0;
+			/*padding:5px 0 0 10px;*/
+			}
+		.a4 { page: a4sheet; page-break-after: always }	
+		
+	}
+}
+
+body { 
+		margin:0;
+		padding:0;
+		overflow:hidden;
+		min-width:855px;
+		}
+	.print_top {
+		margin:0;
+		padding:0;
+		height:73px;
+		background:url(../images/printpage_top_bg.png) top left repeat-x;
+		}
+	
+	.print_logo {
+		margin:13px 0 0 10px;
+		float:left;
+		}
+	
+	.print_subject {
+		margin:19px 0 0 0;
+		height:29px;
+		width:553px;
+		border:solid 5px #808080;
+		}
+	
+	.print_contents {
+		margin:0;
+		padding:5px 0 0 10px;
+		}
+	
+	.map_area {
+		margin:0;
+		padding:0;
+		/*width:800px;*/
+		width:710px;
+		height:490px;
+		/*border:solid 1px #DDDFDF;*/
+		border:solid 5px blue;
+		background-color:#fff;
+		z-index: 5000;
+		}
+	
+	.print_contents_input {
+		margin:5px 0 0 0;
+		padding:0;
+		border:solid 1px #D1D2D1;
+		background-color:#F4F4F4;
+		width:800px;
+		}
+	
+	.print_btn {
+		margin:50px 20px 0 -6px;
+		height:20px;
+		text-align:right;
+		}
+	
+	.print_btn img {
+		border:0;
+		}
+		
+	.print_text {
+		left: 1%;top:78%;position: absolute;z-index: 5000;padding: 0;margin: 0;display:visible;
+	}

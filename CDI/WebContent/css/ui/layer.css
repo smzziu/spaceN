@@ -1,0 +1,23 @@
+.nav_tree {background:#fff;padding:10px; overflow:auto;} 
+.tree_ico {background:url(/img/skin1/folder.png) 2px 2px no-repeat;padding-left:22px;font-size:12px;font-weight:bold}
+.nav_tree ul,.nav_tree ul li,.nav_tree button,.nav_tree a{margin:0;padding:0;font-size:11px;line-height:15px}
+.nav_tree a strong{letter-spacing:-1px;cursor:pointer;_cursor /**/:hand}
+.nav_tree ul{display:block;position:relative;padding:0 0 0 11px;background:url(/img/skin1/line_tree_vr.gif) repeat-y 11px -1px;zoom:1}
+.nav_tree ul li{position:relative;padding:2px 0 2px 10px;background:url(/img/skin1/line_tree_hr.gif) no-repeat 1px 5px !important;white-space:nowrap;list-style:none}
+.nav_tree ul li a,.nav_tree ul li span.nav_tree_label{position:relative;top:0;left:14px;_left /**/:0}
+.nav_tree ul li input{position:relative;top:1px;*top:-2px;_top:-2px;left:10px;_left /**/:0;margin:-2px 0 0;*margin:-4px -3px -3px -4px;_margin:-4px -3px -3px -4px}
+
+/* Opera Fix */
+.nav_tree ul li label.nav_tree_label{position:relative;top:0;*top:0;left:13px;_left /**/:3px}
+
+/* Opera Fix */ 
+.nav_tree ul li button{display:inline-block;position:relative;top:-1px;_left /**/:-16px;width:14px;*width:17px;_width:17px;height:13px;*height:14px;_height:14px;margin:0 -13px 0 0;*margin:0 -14px -2px -2px;_margin:0 -17px -2px -2px;border:none;background:url(/img/skin1/btn_tree_collapse.png) no-repeat;*font-family:Sans-serif;*font-size:0;*line-height:0;text-indent:-10000px;*text-indent:0;cursor:pointer;_cursor /**/:hand}
+.nav_tree ul li ul{display:none;margin:0 0 -2px 6px;padding:0 0;background-position:0 0}
+.nav_tree ul li ul li{display:none}
+.nav_tree ul li.nav_tree_on button{background-position:0 -13px;*background-position:2px -11px}
+.nav_tree ul li.nav_tree_off button{background-position:0 0;*background-position:2px 2px}
+.nav_tree ul li.nav_tree_on ul{display:block}
+.nav_tree ul li.nav_tree_on ul li{display:block}
+.nav_tree ul li.nav_tree_off ul{display:none}
+.nav_tree ul li.nav_tree_off ul li{display:none}   
+.nav_tree ul li.nav_tree_last{background:url(/img/skin1/line_tree_last_hr.gif) no-repeat 0 5px !important}

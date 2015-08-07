@@ -1,0 +1,37 @@
+.olControlOverviewMapElement2 {
+    padding: 0;
+    background-color: #ffffff;
+    -moz-border-radius: 1em 0 0 0;
+}
+.gnbSlider{position:absolute; z-index:1015; cursor:pointer;top:10px; right: 20px;}
+#panZoom{position:absolute; z-index:120000; cursor:pointer; width: 55px;height: 220px;}
+
+
+/*로딩이미지*/
+.olControlLoadingPanel {background-image:url("/sqgis/images/loading.gif");background-position:center;background-repeat:no-repeat;background-color: transparent;}
+.olControlScale {right: 3px;bottom: 3em;display: block;position: absolute;font-size: smaller;}
+.olControlScaleLineCustom {display: block;position: absolute;right: 55px;bottom: 5px;font-size: 12px;}
+.olControlScaleLineCustomBottom {border: solid 2px black;border-bottom: none;margin-top:-2px;text-align: center;}
+.olControlScaleLineCustomTop {border: solid 2px black;border-top: none;text-align: center;}
+.olControlOverviewMapCustomContainer {position: absolute;bottom: 0px;right: 0px;}
+.olControlOverviewMapCustomElement {position:absolute; z-index:2020; cursor:default;bottom:15px; background-color:transparent;background: url("/sqgis/images/loading.gif");width:172px;clear:both;height:170px;line-height:12px;border-top:0px;color: red; right: 0px;}
+.olControlOverviewMapCustomMinimizeButton {right: 5px;bottom: 5px;}    
+.olControlOverviewMapCustomMaximizeButton {right: 5px;bottom: 5px;}
+.olControlOverviewMapCustomExtentRectangle {overflow: hidden;background-image: url("/sqgis/images/loading.gif");cursor: move;border: 2px dotted red;}
+.olControlOverviewMapCustomRectReplacement {overflow: hidden;cursor: move;background-image: url("/sqgis/images/loading.gif");background-repeat: no-repeat;background-position: center;}
+
+
+#bjdcd_ung{margin:10px 0 0 85px;}
+#bjdcd_ung1{margin:10px 0 0 85px;}
+
+.pageIndex strong{
+    font-size: 11pt;
+	color: #000;
+}
+
+.pageIndex a:link{
+    font-size: 11pt;
+	padding-top:6px;
+	padding-bottom:6px;
+}
+

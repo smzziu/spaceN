@@ -1,0 +1,318 @@
+/*버튼 속성*/ 
+#btnArea { 
+	position:relative;
+	text-align:center;
+	padding:10px;
+}
+#btnArea20px {
+	float:left;
+	text-align:center;
+	padding:10px;
+	height:30px;
+	width:100%;
+} 
+.btnBg2 {
+	background:url(/img/map/btnBg2.gif) no-repeat;
+	width:56px;
+	height:23px;
+	border:0;
+	cursor:pointer;
+}
+.btnBg2 span {
+	font-size:11px;
+	text-align:center;
+	font:normal 12px Dotum;
+	color:#fff;
+	z-index:-1;
+}
+.btnBg4 {
+	background:url(/img/map/btnBg4.gif) no-repeat;
+	width:64px;
+	height:23px;
+	border:0;
+	cursor:pointer;
+}
+.btnBg4 span {
+	font-size:11px;
+	text-align:center;
+	font:normal 12px Dotum;
+	color:#fff;
+	z-index:-1;
+}
+.btn_area {
+	padding:10px 0;
+	position:relative;
+	text-align:right;
+	padding-right:20px;
+}
+.btnBg8 {
+	background:url(/img/map/btnBg8.gif) no-repeat;
+	width:106px;
+	height:23px;
+	border:0;
+	cursor:pointer;
+}
+.btnBg8 span {
+	font-size:11px;
+	text-align:center;
+	font:normal 12px Dotum;
+	color:#fff;
+	z-index:-1;
+}
+#btnBox {
+	position:relative;text-align:center;margin:10px;
+}
+/*아래 버튼 CSS만 사용할것*/
+a.btnBg {
+	display:inline-block;
+	padding-right:6px;
+	background:url(/img/button/bgBtnDefault.gif) 100% 0;
+	color:#fff;
+	line-height:20px;
+	word-spacing:-1px;
+	text-decoration:none !important;
+	white-space:nowrap;
+}
+a.btnBg span, a.btnBg strong {
+	display:block;
+	padding:0 6px 0 10px;/*20110117*/
+	color:#fff;
+	line-height:20px;
+	background:url(/img/button/bgBtnDefault.gif) no-repeat;
+}
+/*skin2 기본버튼*/
+a.btnSkin2 {
+	display:inline-block;
+	padding-left:2px;
+	background:url(/img/button/bgBtnDefault.gif) 0 -30px no-repeat;
+	color:#fff;
+	line-height:20px;
+	font-size:11px;
+	word-spacing:-1px;
+	text-decoration:none; !important
+	white-space:nowrap;
+}
+a.btnSkin2 span, a.btnSkin2 strong {
+	display:block;
+	padding:0 12px 0 7px;
+	color:#333;
+	line-height:20px;
+	font-size:11px;
+	background:url(/img/button/bgBtnDefault.gif) 100% -30px no-repeat;
+}
+a.btnSkin2.on {
+	display:inline-block;
+	padding-left:2px;
+	background:url(/img/button/bgBtnDefault.gif) 0 0 no-repeat;
+	color:#fff;
+	line-height:20px;
+	font-size:11px;
+	word-spacing:-1px;
+	text-decoration:none; !important
+	white-space:nowrap
+}
+a.btnSkin2.on span, a.btnSkin2.on strong {
+	display:block;
+	padding:0 12px 0 7px;
+	color:#fff;
+	line-height:20px;
+	font-size:11px;
+	background:url(/img/button/bgBtnDefault.gif) 100% 0 no-repeat;
+}
+/*skin1 기본버튼*/
+a.btnSkin1 {
+	display:inline-block;
+	padding-left:3px;
+	background:url(/img/skin1/skin1_lnb_set.gif) 0 -411px no-repeat;
+	color:#fff;
+	line-height:20px;
+	font-size:11px;
+	word-spacing:-1px;
+	text-decoration:none !important;
+	white-space:nowrap
+}
+a.btnSkin1 span, a.btnSkin1 strong {
+	display:block;
+	padding:0 10px 0 6px;
+	color:#fff;
+	line-height:20px;
+	font-size:11px;
+	background:url(/img/skin1/skin1_lnb_set.gif) 100% -411px no-repeat;
+}
+/*skin1 Blue버튼*/
+a.btnSkin1_b {
+	display:inline-block;
+	padding-left:3px;
+	background:url(/img/skin1/skin1_top_set.png) 0 -140px no-repeat;
+	color:#fff;
+	line-height:20px;
+	font-size:11px;
+	word-spacing:-1px;
+	text-decoration:none !important;
+	white-space:nowrap
+}
+a.btnSkin1_b span, a.btnSkin1_b strong {
+	display:block;
+	padding:0 5px 0 2px;/*20110117*/
+	color:#fff;
+	line-height:20px;
+	font-size:11px;
+	background:url(/img/skin1/skin1_top_set.png) 100% -140px;
+}
+a.btnSkin1_b span img {
+	display:inline-block;
+	vertical-align:middle;
+}
+/*skin1 White버튼*/
+a.btnSkin1_w {
+	display:inline-block;
+	padding-left:3px;
+	background:url(/img/skin1/skin1_top_set.png) 0 -160px no-repeat;
+	color:#016a98;
+	line-height:20px;
+	font-size:11px;
+	word-spacing:-1px;
+	text-decoration:none !important;
+	white-space:nowrap
+}
+a.btnSkin1_w span, a.btnSkin1_w strong {
+	display:block;
+	padding:0 15px 0 6px;
+	color:#016a98;
+	line-height:20px;
+	font-size:11px;
+	background:url(/img/skin1/skin1_top_set.png) 100% -160px;
+}
+/* icon Button UI Object */
+.btn_pack, .btn_pack * {
+ display:inline-block;
+ overflow:visible;
+ position:relative;
+ margin:0;
+ padding:0;
+ border:0;
+ background:url(/img/button/bgBtnDefault.png) left -30px;
+ font-size:12px;
+ color:#666;
+ text-decoration:none !important;
+ vertical-align:top;
+ white-space:nowrap;
+ line-height:18px;
+ height:20px;
+}
+.btn_pack {
+ margin-right:4px;
+ margin-top:2px;
+ background-position:left -30px;
+}
+.btn_pack * {
+ left:5px;
+ cursor:pointer;
+ _cursor:hand;
+ padding:0 6px 0 2px;
+ background-position:right -30px;
+ font-size:11px;
+}
+.btn_pack *:hover, .btn_pack *:active, .btn_pack *:focus {
+	color:#666;
+}
+.btn_pack.strong * {
+	font-weight:bold !important
+}
+.btn_pack .icon * {
+	padding-left:3px;
+}
+.btn_pack.icon span {
+	width:28px;
+	margin-right:-18px;
+	padding:0 !important
+}
+.btn_pack .basic {
+	background-position:3px -54px
+}/*아이콘없는 버튼*/
+.btn_pack .enter {
+	background-position:3px -54px
+}/*등록*/
+.btn_pack .cancel {
+	background-position:-14px -54px
+}/*취소*/
+.btn_pack .delete {
+	background-position:-32px -54px
+}/*삭제*/
+.btn_pack .refresh {
+	background-position:-50px -54px
+}/*새로고침*/
+.btn_pack .list {
+	background-position:-66px -54px
+}/*목록*/
+.btn_pack .write {
+	background-position:-86px -54px
+}/*글쓰기/등록*/
+.btn_pack .modify {
+	background-position:-103px -54px
+}/*수정*/
+.btn_pack .view {
+	background-position:-121px -54px
+}/*상세보기*/
+.btn_pack .selmodify {
+	background-position:-138px -54px
+}/*선택수정*/
+.btn_pack .seldelete {
+	background-position:-259px -54px
+}/*선택삭제*/
+.btn_pack .print {
+	background-position:-155px -54px
+}/*인쇄*/
+.btn_pack .exelsave {
+	background-position:-172px -54px
+}/*엑셀파일로저장*/
+.btn_pack .exelview {
+	background-position:-190px -54px
+}/*엑셀파일보기*/
+.btn_pack .addfile {
+	background-position:-208px -54px
+}/*첨부파일*/
+.btn_pack .map {
+	background-position:-227px -54px
+}/*도면*/
+.btn_pack .src {
+	background-position:-121px -54px
+}/*검색*/
+.btn_pack .plus {
+	background-position:-243px -54px
+}/*추가*/
+.btn_pack .withdraw {
+	background-position:-276px -54px
+}/*선택탈퇴*/
+
+.btn_pack .withdraw {
+ background-position:-276px -54px
+}/*선택탈퇴*/
+
+
+.btn_pack .hwp {
+ background-position:-397px -54px
+}/*한글파일*/
+
+
+
+.btn_pack .doc {
+ background-position:-417px -54px
+}/*doc*/
+
+
+.btn_pack .shape {
+ background-position:-434px -54px
+}/*shp*/
+
+
+
+.btn_pack .pdf {
+ background-position:-457px -54px
+}/*pdf*/
+
+
+.btn_pack .graph {
+ background-position:-478px -54px
+}/*graph*/
+
