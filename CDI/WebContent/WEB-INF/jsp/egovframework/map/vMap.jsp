@@ -214,7 +214,7 @@ function resizeCenter(){
 				<li><a href="#" class="topbtn_distance" onclick="apiMap.calcDistance();" title="거리"></a></li>
 				<li><a href="#" class="topbtn_area" onclick="apiMap.calcArea();" title="면적"></a></li>
 				<li><a href="#" class="topbtn_full" onclick="apiMap.fullExtent();" title="전체보기"></a></li>
-				<li><a href="#" class="topbtn_buffer" onclick="getWfsValue('buffer');" title="버퍼"></a></li>
+				<li><a href="#" class="topbtn_point" onclick="getWfsValue('buffer');" title="버퍼"></a></li>
 				<li><a href="#" class="topbtn_buffer" onclick="getBoundVisible();" title="버퍼"></a></li>
 				<li><a href="#" class="topbtn_rode" onclick="" title="로드뷰"></a></li>
 				<li>
