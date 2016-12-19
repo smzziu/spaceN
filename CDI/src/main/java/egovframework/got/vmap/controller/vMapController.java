@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,6 +68,19 @@ public class vMapController {
 			return "/west/vJusoSearch";
 		}
 		 
+	}
+	
+	/**
+	 * Drag Event 화면 호출
+	 * @param commandMap
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/drag.do")
+	public String drag(HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession(false);
+		return "/mouseEvent/drag";
 	}
 	
 	
